@@ -1,0 +1,99 @@
+CHEAT SHEET: https://gist.github.com/hofmannsven/9164408
+
+mysql -u root -p //use in CLI
+
+CREATE DATABASE Teszt;
+show Databases;
+
+USE <dbname>;-> USE Teszt;
+
+CREATE TABLE users (
+	'id' INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	'first_name' VARCHAR(50),
+	'last_name' VARCHAR(50),
+	'email' VARCHAR(50),
+	'password' VARCHAR(255),
+	'age' INT
+);
+
+SQL parancsként: 
+CREATE TABLE users (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	first_name VARCHAR(50),
+	last_name VARCHAR(50),
+	email VARCHAR(50),
+	password VARCHAR(255),
+	age INT
+)
+
+
+show Tables;
+SELECT * FROM <tname>; ->SELECT * FROM users;
+
+INSERT INTO users(first_name, last_name, email, password, age) 
+			VALUES ('Kovacs', 'Istvan', 'kovi@gmail.com', 123456, 34);
+			
+INSERT INTO users(first_name, last_name, email, password, age) 
+			VALUES 
+			('Kovacs', 'Bela', 'kobe@gmail.com', 1234567, 4),
+			('Horvath', 'Oszkar', 'hoosz@gmail.com', 7654987, 38),
+			('Puzsér', 'Róbert', 'puzser@gmail.com', 'ABCDefg', 44);
+			
+SELECT first_name, last_name, age FROM users WHERE first_name LIKE '%kov%' ORDER BY age DESC;
+SELECT * FROM users WHERE age<=40 ORDER BY age;
+SELECT * FROM users WHERE email not like '%gmail% ORDER BY age;
+SELECT fist_name, last_name FROM users WHERE (name='Kovacs' AND age>10) ORDER BY first_name;
+SELECT * FROM users WHERE (first_name like '%kov%' AND age>30) ORDER BY last_name;
+
+DESCRIBE <tname>; -> DESCRIBE users;
+
+DELETE FROM users WHERE first_name="Kovacs";
+DELETE FROM users WHERE age>50;
+
+
+
+
+//------------ DROP --------------
+DROP TABLE <tname>; -> DROP TABLE users;
+DROP DATABASE <dbname>; -> DROP DATABASE teszt;
+
+
+/// SIMPLE php connection and query
+	$conn = mysql_connect('127.0.0.1','root','password');
+	mysql_select_db("users",$conn);
+	
+	$prompt = "CREATE DATABASE teszt";
+	mysql_query($prompt);
+
+	
+	$prompt = "SELECT * FROM users";
+	$result= mysql_query($prompt);
+	$rows_number = mysql_num_rows($result); //return the rows number
+	
+	
+	//--------- DATA Process 1 --------- sor kiolvasással
+	$row = mysql_fetch_array($result); //eredmény tábla következő sorát olvassa ki
+	$name = $row["first_name"]." ".$row['last_name'];
+	$age = $row['age'];
+	echo "Name: ".$name." Age: ".$age."<BR>";
+	
+	//--------- DATA Process 2 --------- soronkénti kiolvasással while-al
+	
+	while($row = mysql_fetch_array($result)){
+		$name = $row["first_name"]." ".$row['last_name'];
+		$age = $row['age'];
+		echo "Name: ".$name." Age: ".$age."<BR>";
+	}
+
+	//--------- DATA Process 3 ---------
+	if($rows_number>0){
+		DATA Process 1 or 2
+	}else{
+		echo "No result...";
+	}
+	
+	
+	
+	
+
+	mysql_close($conn);

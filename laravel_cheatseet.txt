@@ -1,4 +1,4 @@
-inspired by: The Net Ninja - Laravel 6 Tutorial for Beginners 
+Inspired by: The Net Ninja - Laravel 6 Tutorial for Beginners 
 https://www.youtube.com/playlist?list=PL4cUxeGkcC9hL6aCFKyagrT1RCfVN4w2Q
 Many thanks
 
@@ -98,7 +98,7 @@ Blade Loops
 	//{{ $loop->last }} - last item in the loop
 
 -----------------------------------------------------------------
-Nativ php code with Blade: (simular to <?php ?>)
+Nativ php code with Blade: (similar to <?php ?>)
 
 	@php
 		echo($price);
