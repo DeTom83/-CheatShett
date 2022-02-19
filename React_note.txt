@@ -1,0 +1,51 @@
+//Egyszerű kiíratás, ahol a 'root' egy html div id-ja -> <div id="root"></div>
+ReactDOM.render(<h1>Hello, everyone!</h1>, document.getElementById("root"))
+
+//HTML tartalom kiíratása a legegyszerűbb módon:
+ReactDOM.render(<ul>
+                    <li>1. row</li>
+                    <li>2. row</li>
+                    <li>3. row</li>
+                    <li>4. row</li>
+                </ul>, 
+                document.getElementById("root"))
+
+//Ugyan az, csak változó közbeiktatásával:
+const page = (
+    <ul>
+        <li>1. row</li>
+        <li>2. row</li>
+        <li>3. row</li>
+        <li>4. row</li>
+    </ul>
+)
+ReactDOM.render(page, document.getElementById("root"))
+
+//Ugyan az, csak függvény használatával:
+function MainContent(){
+    return (
+        <ul>
+            <li>1. row</li>
+            <li>2. row</li>
+            <li>3. row</li>
+            <li>4. row</li>
+        </ul>
+    )
+}
+
+ReactDOM.render(MainContent(), document.getElementById("root")) //verzó 1
+ReactDOM.render(<MainContent />, document.getElementById("root")) //verzó 2
+
+//Több sornyi tartalom kiíratása esetén DIV-et kell használni!!! JSX nyelvi szintaktika miatt
+ReactDOM.render(
+            <div>
+                <h1>Minden utca végén sorok: </h1>
+                <ul>
+                    <li>1. row</li>
+                    <li>2. row</li>
+                    <li>3. row</li>
+                    <li>4. row</li>
+                </ul>
+            </div>, 
+                document.getElementById("root"))
+

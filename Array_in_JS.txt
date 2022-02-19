@@ -1,0 +1,169 @@
+
+https://webiskola.hu/javascript-ismeretek/tombok-a-javascriptben-js-indexeles/
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
+https://www.youtube.com/c/ArniWebDev/playlists
+
+Tömb létrehozása:
+------------------
+
+	//Array literal
+	var/let/const TÖMBNÉV = [ELEM1, ELEM2, ELEM3]; // var nyelvek = ["HTML", "CSS", "JS"];
+
+	vagy
+
+	var/let/const TÖMBNÉV = new Array(ELEM1, ELEM2, ELEM3);
+
+	const arr1 = [];
+	const arr2 = [1,"2","Hello",[2,3], {name:"Arni"}];
+	//arr2[3][1] -> 3
+	//arr2[4].name -> Arni
+
+	//Array constructor 
+	const arr3 = new Array(5); //5 hosszuságú tömb, ami üres
+	const arr4 = Array.of(5); //tömb, aminek az első eleme 5
+
+-------------------------------------------------------------------------------------
+Tömb elemének elérése: 
+
+	TÖMBNÉV[INDEX];
+
+Tömb elemének módosítás, értékadás: //már, ha nem adjuk meg a tömb deklarálásakor
+	
+	TÖMBNÉV[INDEX] = ÚJ.ÉRTÉK;
+
+Tömb hosszának a lekérdezése:
+
+	TÖMBNÉV.length;
+
+Új elem hozzáadása:
+
+	TÖMBNÉV.push(ÚJ.ÉRTÉK); //beszúrás a végére
+	TÖMBNÉV.push([ÚJ.ÉRTÉK]); //tömb beszúrása a végére 
+	TÖMBNÉV[TÖMBNÉV.length] = ÚJ.ÉRTÉK; //beszúrás a végére
+	TÖMBNÉV.unshift(ÚJ.ÉRTÉK); //beszúrás az elejére
+
+Elem törlése:
+
+	TÖMBNÉV.pop(); //kiveszi a tömb utolsó elemét és visszatérési értékként visszaadja azt.
+	TÖMBNÉV.shift(); //kiveszi a tömb első elemét és visszatérési értékként visszaadja azt.
+	delete TÖMBNÉV[INDEX]; //nem ajánlott, mert undefined értékü lyukak lesznek a tömbben
+
+	let pos = 1 //melyik kezdőpozitól töröljön
+	let n = 1 //hány darabot töröljön onnét
+	let removedItem = nyelvek.splice(pos, n) // this is how to remove an item
+	//fv visszatérési értéke a törölt elem lesz
+
+-------------------------------------------------------------------------------------
+Tömb elemeinek kiíratására több példa:
+
+	//Egyesével
+	var nyelvek = ["HTML", "CSS", "JS"]; 
+	document.getElementById("szoveg").innerHTML = nyelvek[0];
+	document.getElementById("szoveg").innerHTML = nyelvek[1];
+	document.getElementById("szoveg").innerHTML = nyelvek[2];
+
+	vagy
+
+	//Összes egyszerre
+	document.getElementById("szoveg").innerHTML = nyelvek;
+
+
+Tömb első/utolsó elemének lekérdezése
+	
+	var nyelvek = ["HTML", "CSS", "JS"]; 
+	first = nyelvek[0]
+	last = nyelvek[nyelvek.length-1]
+
+Loop over an Array
+
+	var nyelvek = ["HTML", "CSS", "JS"]; 
+	nyelvek.forEach(function(item, index, array) {
+		console.log(item, index)
+	})
+	//HTML 0
+	//CSS 1
+
+
+Find the index of an item in the Array
+
+	var nyelvek = ["HTML", "CSS", "JS"]; 
+	let pos = nyelvek.indexOf('CSS')
+
+Array?
+
+	Array.isArray(nyelvek); //return true
+
+type?
+	typeof arr2 //return object
+	typeof arr2["1"] // return number
+
+-------------------------------------------------------------------------------------
+Tömbök összefüzése:
+
+	arr3 = arr1.concat(arr2); //arr3ban az elemek sorrendje: arr1+arr2
+	arr3 = arr2.concat(arr1); //arr3ban az elemek sorrendje: arr2+arr1
+	
+
+-------------------------------------------------------------------------------------
+Tömben keresés:
+
+	TÖMBNÉV.includes(keresendő_elem) //true ha van, false, ha nincs	
+	TÖMBNÉV.includes(keresendő_elem, index) //index elemtől indítja a keresést
+	//ha index>tömb.length -> false fog generálni
+	//ha index=-2 akkor hátolról a másodiktól fog keresni
+
+	TÖMBNÉV.indexOf(keresendő_elem) // első előfordulási indexel tér vissza | -1 ha nincs
+	//itt is müxik az indexelés paraméterezés
+
+	TÖMBNÉV.lastIndexOf(keresendő_elem) //utolsó elő. indexel tér vissza | -1 ha nincs
+	//ez hátulról indítja a keresést, hátolról az első előfordulási indexet adja meg
+
+	//primitív típusokra használhatóak
+
+
+
+-------------------------------------------------------------------------------------
+
+
+
+-------------------------------------------------------------------------------------
+splice fv:
+
+	Array.splice (index, howMany, [, ..., elementN]);
+
+index – Az az index, amelynél el kell kezdeni a tömb módosítását.
+howMany Az eltávolítandó régi tömbelemek számát jelző egész szám. 
+	Ha a howMany értéke 0, a rendszer nem távolítja el az elemeket.
+elem1,…, elemN - A tömbhöz hozzáadandó elemek. Ha nem ad meg egyetlen elemet sem, 
+	a splice egyszerűen eltávolítja az elemeket a tömbből.
+
+------------------------------------------------------------------------------------
+
+Tömb elemeinek véletlen keverésére példa:
+
+	var tomb=new Array();
+	tomb[0]="egy";
+	tomb[1]="ketto";
+	tomb[2]="harom";
+
+	function shuffle(array) {
+	   for (var i=0; i<array.length-1; i++) {
+	   	var j = Math.floor(Math.random()*(array.length-i))+i;
+		var tmp = array[i];
+		array[i] = array[j];
+	        array[j] = tmp;
+   	  }
+   	  return array;
+	}
+
+Az alapelv az, hogy a tömb minden indexére sorsolsz egy új indexet a hátralevő elemekből, 
+amivel felcseréled (az is kijöhet, hogy magával cseréled az elemet, vagyis marad a helyén). 
+Lehet úgy is képzelni, hogy az i-nél nagyobb-egyenlő indexű elemek egy kalapban vannak, és 
+közülük húzol csukott szemmel egyet, amit aztán beraksz az i-edik indexre. 
+Mire az utolsó indexhez érsz, már csak egy elem marad a kalapban, vagyis az utolsó elemre 
+már felesleges lefuttatni a ciklust. (Ezért megy csak (array.length-1)-ig.)
+	
+
+Más megoldások: 
+https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+https://www.youtube.com/watch?v=Ho8YK9BkSyE

@@ -1,0 +1,238 @@
+inspired by: The Net Ninja - Laravel 6 Tutorial for Beginners 
+https://www.youtube.com/playlist?list=PL4cUxeGkcC9hL6aCFKyagrT1RCfVN4w2Q
+Many thanks
+
+Install Laravel:
+-----------------
+composer create-project laravel/laravel example-my-app
+or
+composer global require laravel/installer //download and update
+laravel new example-app
+
+Special param:
+-------------------------
+laravel new example-app --git
+laravel new example-app --git --branch="main"
+laravel new example-app --github
+laravel new example-app --github="--public"
+
+
+Add Bootstrap:
+---------------
+Ver 1:
+composer require twbs/bootstrap:5.0.1
+npm install bootstrap
+
+<link rel="stylesheet" href={{ asset('css/app.css') }}>
+<script src="{{ asset('js/app.js') }}"></script>
+
+Ver 2:
+composer require laravel/ui
+php artisan ui bootstrap
+npm install bootstrap@next @popperjs/core --save-dev
+npm run dev //yes 2x
+npm run dev
+
+
+Add Laravel UI:
+----------------
+composer require laravel/ui
+php artisan ui bootstrap
+php artisan ui bootstrap --auth
+npm install
+npm run dev
+npm run production
+
+
+<link rel="stylesheet" href={{ asset('css/app.css') }}>
+<script src="{{ asset('js/app.js') }}"></script>
+
+
+-----------------------------------------------------------------
+<!doctype html>
+<html>
+<head>
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+   
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+</head>
+<body>
+    <h1>This is example Bootstrap page</h1>
+</body>
+</html>
+-----------------------------------------------------------------
+If statment in Blade:
+
+	@if($price > 5)
+		<p>Expensive</p>
+	@endif
+
+
+	@if($price > 5)
+		<p>Expensive</p>
+	@elseif($price < 5)
+		<p>Cheap</p>
+	@else
+		<p>The price is 5 :)</p>
+	@endif
+	
+	
+	@unless($price == 5) //equal if($price <> 5)
+		<p>The price is different from 5</p>
+	@endunless
+-----------------------------------------------------------------
+
+Blade Loops
+	@for($i = 0; $i < 5; $i++)
+		<p>The value fo i is {{ $i }} </p>
+	@endfor
+	
+	---------------------------------------
+	@foreach($pizzas as $pizza)
+			<p>{{ $loop->index }} -- {{ $pizza['type'] }} -- {{ $pizza['base'] }} -- {{ $pizza['price'] }} </p>
+	@endforeach
+	//{{ $loop->index }} - special variable inside the loop
+	//{{ $loop->first }} - first item in the loop
+	//{{ $loop->last }} - last item in the loop
+
+-----------------------------------------------------------------
+Nativ php code with Blade: (simular to <?php ?>)
+
+	@php
+		echo($price);
+	@endphp
+
+-----------------------------------------------------------------
+Param and variable use
+
+web.php->view('welcome')
+
+Version 1:
+	(web.php)
+	return view('pizza',['type'=>'Margarita','base'=>'chees']);
+	
+	(view->pizza.blade.php)
+	-> hivatkozas ra a viewba:  {{ $type }} -- {{ $base }}
+	
+Version 2:
+	(web.php)
+	$pizza = ['type' => 'Magyaros',
+              'base' => 'Szalámlis, sonkás, kolbászos',
+              'price' => 10];
+
+              
+    return view('pizza',$pizza);
+	
+	(view->pizza.blade.php)
+	{{ $type }} -- {{ $base }} -- {{ $price }}
+	
+
+Version 3:
+	(web.php)
+	$pizzas = [
+        ['type' => 'Margarita','base' => 'Chees','price' => 4],
+        ['type' => 'Meet lover','base' => 'Ham, Salam','price' => 6],
+        ['type' => 'Hot lover','base' => 'Pepperoni, Jalapeni','price' => 5]
+    ];
+    return view('pizza',['pizzas' => $pizzas]);
+	
+	(view->pizza.blade.php)
+	@for($i = 0; $i < count($pizzas); $i++)
+		<p>{{ $pizzas[$i]['type'] }} -- {{ $pizzas[$i]['base'] }} -- {{ $pizzas[$i]['price'] }} </p>
+	@endfor
+	
+	or with foreach
+	@foreach($pizzas as $pizza)
+		<p>{{ $pizza['type'] }} -- {{ $pizza['base'] }} -- {{ $pizza['price'] }} </p>
+	@endforeach
+	
+	
+-----------------------------------------------------------------
+Layout
+	- make a directory and file inside view directory and file:
+	layouts->layout.blade.php
+	<HTML>
+	<HEAD></HEAD>
+	<BODY>
+		@yield('content')
+	</BODY>
+	</HTML>
+	
+	- reference to it
+	example view->pizza.blade.php
+	@extends('layouts.layout')
+	@section('content')
+	 ...
+	@endsection	
+	
+-----------------------------------------------------------------
+Query parameters
+
+	Example: http://127.0.0.1/pizza?id=2&name=Mario
+	
+	(web.php)
+		Route::get('/pizza', function () {
+			$id = request('id');
+			$name = request('name');
+			return view('pizza',['id' => $id, 'name' => $name]);
+		});
+		
+	(view->pizza.blade.php)
+		@if(isset($id))
+			<p>{{ $id }}</p>
+		@endif
+		
+		@if(isset($name))
+			<p>{{ $name }}</p>
+		@endif
+		
+Route Parameters
+	Example: http://127.0.0.1/pizza/mario
+	
+	(web.php)*
+		Route::get('/pizza/{id}', function ($id) {
+			return view('pizza',['id' => $id]);
+		});
+		
+	(view->pizza.blade.php)
+		@if(isset($id))
+			<p>{{ $id }}</p>
+		@endif
+		
+	//*the order within the file is very important; 
+	//*processes and prioritizes from top to bottom
+		!Possible bug:
+		Route::get('/pizza/{id}', function ($id) {...});
+		Route::get('/pizza/create', function () {...});
+		//Second option will never run
+	
+-----------------------------------------------------------------
+Controller:
+
+	Command in terminal: php artisan make:controller PizzaController
+	//this will make PizzaController.php in App\Http\Controllers\
+	
+	Changes
+	(web.php)
+		Route::get('/pizza',[PizzaController::class, 'index']);
+		Route::get('/pizza/{id}',[PizzaController::class, 'show']);
+	
+	PizzaController.php
+		class PizzaController extends Controller
+		{
+			public function index(){
+				$pizzas = [
+				['type' => 'Margarita','base' => 'Chees','price' => 4],
+				['type' => 'Meet lover','base' => 'Ham, Salam','price' => 6],
+				['type' => 'Hot lover','base' => 'Pepperoni, Jalapeni','price' => 5]
+			];
+			return view('pizza',['pizzas' => $pizzas]);
+			}
+	
+			public function show($id){
+			return view('pizza',['id' => $id]);
+			}
+		}
+	
