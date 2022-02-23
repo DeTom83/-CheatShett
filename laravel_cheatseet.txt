@@ -235,4 +235,68 @@ Controller:
 			return view('pizza',['id' => $id]);
 			}
 		}
+
+-----------------------------------------------------------------
+Model:
+
+	CLI:
+		php artisan make:model Pizza
+		//make file app/Models/Pizza.php
+		
+		
+	Code:
+		(Controllers\Pizza.Controller.php)
+		//We have to linked in Controller
+		use App\Models\Pizza;
+		//And we can refer it	
+		$pizzas = Pizza::all();
+		return view('pizza',['pizzas' => $pizzas]);
+		
+		
+		//Or different query:
+		$pizzas = Pizza::orderBy('name')->get();
+		$pizzas = Pizza::where('name','American Hot')->get(); //where('where','what')
+		
+		//https://laravel.com/docs/9.x/queries
+			
+		
+		(View\pizza.blade.php)
+		//and the view has been change because we use object insted of array
+		{{ $pizza->name }} -- {{ $pizza->type }} -- {{ $pizza->base }}
+
+-----------------------------------------------------------------
+Migration and migrate
+
+	url: https://laravel.com/docs/9.x/migrations
 	
+	CLI:
+		php artisan //list all command and parameters
+		php artisan make:migration create_xxxxx_table //create xxxxx file
+								---------------
+			
+		
+		php artisan migrate //execute the migrate 
+		php artisan migrate:status //migrations have run thus far
+		php artisan migrate --force 
+		php artisan migrate:rollback 
+		// This command rolls back the last "batch" of migrations
+		// Rollback the last database migration
+		
+		php artisan migrate:reset // Rollback all database migrations
+		php artisan migrate:fresh //Drop all tables and re-run all migrations
+		php artisan migrate:refresh //rollback and migration 2 in 1
+		
+		php artisan make:migration add_prices_to_pizzas_table
+		//you can make a new table where add price to original table
+
+	Create table:
+		$table->bigIncrements('id'); 
+		//creates an auto-incrementing UNSIGNED BIGINT (primary key)
+		$table->string('name');
+		$table->integer('price');
+		$table->timestamp('create_at')->useCurrent();
+		$table->timestamp('update_at')->useCurrent()->useCurrentOnUpdate();
+		$table->timestamps(); //creates created_at and updated_at TIMESTAMP
+
+-----------------------------------------------------------------
+

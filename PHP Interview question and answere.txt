@@ -1,0 +1,199 @@
+PHP Interview questions
+------------------------
+Inspired by: 
+https://www.guru99.com/php-interview-questions-answers.html
+https://www.javatpoint.com/php-interview-questions
+https://arc.dev/interview/php-interview-questions-and-answers
+https://www.edureka.co/blog/interview-questions/php-interview-questions/
+https://www.interviewbit.com/php-interview-questions/
+
+
+--------------------------------------------------------------------------------------------
+Basic level
+	- What is PHP?
+		PHP is a web language based on scripts that allow developers to dynamically 
+		create generated web pages.
+		
+	- What do the initials of PHP stand for?
+		PHP means PHP: Hypertext Preprocessor or Personal Home Page (the old name)
+		
+	- Which programming language does PHP resemble?
+		PHP syntax resembles Perl and C
+		
+	- Who is known as the father of PHP?
+		Rasmus Lerdorf
+		
+	- What does PEAR stand for?
+		PEAR means “PHP Extension and Application Repository”. 
+		It extends PHP and provides a higher level of programming for web developers.	
+		
+	- What is the actually used PHP version?
+		LTS version is the 7.4.28 released on 17.02.2022.
+		Lastest version is the 8.1.3. released 17.02.2022.
+		
+		
+	- What is difference between php 7 and 8?
+		+ PHP JIT (Just in Time Compiler)
+		+ PHP 8 Improvements and New Features
+		+ New PHP Functions
+		+ Additional RFCs
+		+ PHP 8 Performance Benchmarks
+		! PHP 7 uses 3.4 and 8 uses 4.0 Zend engine
+		https://www.innoraft.com/blogs/php-8-new-features-and-changes-part-1
+		https://kinsta.com/blog/php-8/
+	
+	- What is the main difference between PHP 4 and PHP 5?
+		PHP 5 presents many additional OOP (Object Oriented Programming) features.
+		PHP 4 uses Zend Engin 1. PHP 5 uses Zend Engine 2.
+	
+	- What are the popular Content Management Systems (CMS) in PHP?
+		WordPress, Joomla, Magento, Drupal
+		
+	- What are the popular frameworks in PHP?
+		CakePHP (https://cakephp.org/ - lastest version: 4.3.5 released: 04.02.2022.)
+		CodeIgniter (https://codeigniter.com/ - lastest version: 4.1.8 released: 24.02.2020.)
+		Yii2 (https://www.yiiframework.com/ - lastest version: 2.0.45 released: 11.02.2022.)
+		Symfony (https://symfony.com/ - lastest version: 6.0.4 released: 11.2021.)
+		Laravel (https://laravel.com/ - lastest version: 9 released: 08.02.2022.)
+		
+	
+	
+	- How do you execute a PHP script from the command line?
+		Just use the PHP command line interface (CLI) and specify the file 
+		name of the script to be executed as follows:
+			
+			php script.php
+	
+	- How to run the interactive PHP shell from the command line interface?
+		Just use the PHP CLI program with the option -a as follows:
+		
+			php -a
+	
+	- What is the correct and the most two common way to start and finish a PHP block of code?
+		The two most common ways to start and finish a PHP script are:
+		
+		<?php [   ---  PHP code---- ] ?> 
+		<? [---  PHP code  ---] ?>
+		
+	
+	- How can we display information of a variable and readable by a human with PHP?
+		To be able to display a human-readable result we use:
+			
+			print_r().
+		
+		and more options:
+			echo '';
+			var_dump();
+			print();
+			
+	- What is the difference between "echo" and "print" in PHP?
+		Echo can output one or more string but print can only output one string and always returns 1.
+		Echo is faster than print because it does not return any value.
+			
+	- Explain the difference b/w static and dynamic websites?
+		In static websites, content can't be changed after running the script. 
+		You can't change anything on the site. It is predefined. In dynamic websites, 
+		content of script can be changed at the run time. Its content is regenerated every 
+		time a user visit or reload. Google, yahoo and every search engine is the example 
+		of dynamic website.
+
+	- List some of the features of PHP7.
+			Scalar type declarations
+			Return type declarations
+			Null coalescing operator (??)
+			Spaceship operator
+			Constant arrays using define()
+			Anonymous classes
+			Closure::call method
+			Group use declaration
+			Generator return expressions
+			Generator delegation
+			Space ship operator
+	
+	
+	
+
+Advanced level
+	- Is multiple inheritance supported in PHP?
+		PHP supports only single inheritance; it means that a class can be extended from 
+		only one single class using the keyword ‘extended’.
+	
+	- What is the meaning of a final class and a final method?
+		‘final’ is introduced in PHP5. Final class means that this class cannot be extended 
+		and a final method cannot be overridden.
+		
+	- How failures in execution are handled with include() and require() functions?
+		If the function require() cannot access the file then it ends with a fatal error. 
+		However, the include() function gives a warning, and the PHP script continues to execute.
+	
+	- What is the difference between $message and $$message?
+		$message stores variable data while $$message is used to store variable of variables.
+
+		$message stores fixed data whereas the data stored in $$message may be changed dynamically.
+
+	-	How many types of array are there in PHP?
+		There are three types of array in PHP:
+
+			Indexed array: an array with a numeric key.
+			Associative array: an array where each key has its specific value.
+			Multidimensional array: an array containing one or more arrays within itself.
+	
+	- Explain some of the PHP array functions?
+		https://www.php.net/manual/en/function.array
+		
+	
+	- What are the ways to define a constant in PHP?
+		PHP constants are name or identifier that can't be changed during execution of the script. 
+		PHP constants are defined in two ways:
+
+			Using define() function
+			Using const() function
+
+	- What are magic constants in PHP?
+		PHP magic constants are predefined constants, which change based on their use. 
+		They start with a double underscore (__) and end with a double underscore (__).
+	
+	- What are the different loops in PHP?
+		For, while, do-while and for each.
+		
+	- What is the use of count() function in PHP?
+		The PHP count() function is used to count total elements in the array, or something an object.
+	
+	- What does isset() function?
+		The isset() function checks if the variable is defined and not null.
+
+
+Harcode level
+
+	- What is needed to be able to use image function?
+		GD library is needed to execute image functions.
+		
+	- What is the use of the function ‘imagetypes()’?
+		imagetypes() gives the image format and types supported by the current version of GD-PHP.
+		
+	- What are the functions to be used to get the image’s properties (size, width, and height)?
+		The functions are getimagesize() for size, imagesx() for width and imagesy() for height.
+		
+	- What does the PHP error ‘Parse error in PHP – unexpected T_variable at line x’ means?
+		This is a PHP syntax error expressing that a mistake at the line x stops parsing 
+		and executing the program.
+		
+	- What is the function file_get_contents() useful for?
+		file_get_contents() lets reading a file and storing it in a string variable.
+		
+	- What is the use of header() function in PHP?
+		The header() function is used to send a raw HTTP header to a client. It must be called before 
+		sending the actual output. For example, you can't print any HTML element before using this function.
+		
+	- Be up to date with updates to the frameworks I use:
+		What's in the last update?
+		Why did updates come out?
+		What are the updates that came out?
+		What is the main difference between major version upgrades?
+	
+	
+	- Code review?
+		What could I do more optimally and nicely?
+		
+		
+	
