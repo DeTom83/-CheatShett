@@ -1,0 +1,122 @@
+PostgreSQL course
+-------------------
+JOIN
+	Produces values by merging together rows from different related tables
+	Use a join most times that you're asked to find data that involves multiple resources
+		
+	Make new tempolary table with first and second (or more) table(s).
+		comments (id, contents, user_id)
+		users(id, username)
+		
+		SELECT contents, username FROM comments JOIN users ON comments.user_id = user.id;
+		->comments and users table (id, contents, user_id, id, username)
+		
+	Ha van egy NULL értéked az egyik táblában, amihez nem tartozik, akkor
+	az a JOIN táblában nem fog megjelenni, dropolódni fog. default, de van megoldás!!!
+			
+Aggregation
+	Looks at many rows and calculates a single values
+	Words like 'most', 'average', 'least' are a sing that you need to use an aggregation
+
+	
+
+JOIN and SELECT example:
+
+	SELECT //not neccesery write table name users.username == username
+		users.username, 
+		photos.url,
+		contents
+	FROM
+		comments
+		JOIN users
+		ON users.id = comments.user_id
+		JOIN photos
+		ON photos.user_id = comments.user_id;
+	-------------------------------------------------------------------
+	SELECT
+		contents,
+		url
+	FROM
+		comments
+		JOIN photos
+		ON photos.user_id = comments.user_id;
+	-------------------------------------------------------------------
+	SELECT
+		users.id,
+		photos.id,
+		username,
+		url
+	FROM
+		users
+		JOIN photos ON users.id = photos.user_id;
+	//This table use 2x id column that we have to use users.id not
+	//enough just an id
+	
+	-------------------------------------------------------------------
+
+	*** Inner Join  *** (DEFAULT) - közös metszet nézet
+	SELECT url, username FROM photos JOIN users ON users.id = p.user_id;
+																	 -----
+	->If the photos table has a NULL user_id this row won't JOIN to the
+	new tempolary table. (Csak a két halmaz metszete kerül a temp táblába.)
+	
+	*** Left Outer JOIN  *** - közös metszet + full bal
+	SELECT url, username FROM photos LEFT JOIN users ON users.id = p.user_id;
+																	 ----------
+	->Photos.user_id NULL row will join to the new tempolary table.
+	(Az első oszlop összes eleme a második oszlop metszere kerül bele.)
+	
+	***Right Outer JOIN  *** - közös metszet + full jobb
+	SELECT url, username FROM photos RIGHT JOIN users ON users.id = p.user_id;
+																	------------
+	->users table all element join the final table
+	(Az első oszlopból csak a metszet, a második halmazból az összes elem.)
+	
+	***FULL JOIN  *** - full bal, full jobb
+	SELECT url, username FROM photos FULL JOIN users ON users.id = p.user_id;
+																	------------
+	->two tables migration
+	-------------------------------------------------------------------
+	WHERE JOIN to JOIN
+		SELECT
+			contents,
+			url
+		FROM
+			comments AS c
+			JOIN photos ON c.photo_id = photos.id
+		WHERE 
+			c.user_id = photos.user_id;
+
+		-------------------------------------------------------------------
+		SELECT
+			username,
+			url,
+			contents
+		FROM
+			comments AS c
+			JOIN photos ON c.photo_id = photos.id
+			JOIN users ON c.user_id = users.id
+		WHERE 
+			c.user_id = photos.user_id;
+		
+-------------------------------------------------------------------
+Little cheat with AS:
+	
+	SELECT
+		u.id, //**
+		photos.id,
+		username,
+		url
+	FROM
+		users AS u  //**<<<<<<<<<<<-------------
+		JOIN photos ON u.id = photos.user_id;
+		
+	//It works just after FROM! I tried it! :-D
+	
+	
+	
+	INSERT
+		INSERT INTO
+			users(name, age)
+		VALUES
+			('Miki', 12);

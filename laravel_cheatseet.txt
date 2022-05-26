@@ -1,5 +1,7 @@
 Inspired by: The Net Ninja - Laravel 6 Tutorial for Beginners 
 https://www.youtube.com/playlist?list=PL4cUxeGkcC9hL6aCFKyagrT1RCfVN4w2Q
+URL: https://www.tutorialspoint.com/laravel
+https://www.youtube.com/watch?v=2bz5eleBj98
 Many thanks
 
 Install Laravel:
@@ -19,17 +21,21 @@ laravel new example-app --github="--public"
 
 Add Bootstrap:
 ---------------
-Ver 1:
+Tips: https://larainfo.com/blogs/3-way-to-install-bootstrap-5-in-laravel-8
+
+Ver 1: - ez most valamiért nem müxik nekem :-/
 composer require twbs/bootstrap:5.0.1
 npm install bootstrap
 
 <link rel="stylesheet" href={{ asset('css/app.css') }}>
 <script src="{{ asset('js/app.js') }}"></script>
 
+
 Ver 2:
 composer require laravel/ui
 php artisan ui bootstrap
 npm install bootstrap@next @popperjs/core --save-dev
+npm install
 npm run dev //yes 2x
 npm run dev
 
@@ -38,14 +44,24 @@ Add Laravel UI:
 ----------------
 composer require laravel/ui
 php artisan ui bootstrap
-php artisan ui bootstrap --auth
+//php artisan ui bootstrap --auth
 npm install
-npm run dev
-npm run production
+npm run dev (2x?)
+//npm run production
 
 
 <link rel="stylesheet" href={{ asset('css/app.css') }}>
 <script src="{{ asset('js/app.js') }}"></script>
+
+
+Version 4: https://youtu.be/EcYXsp78Xy8?t=3707
+------------
+composer require laravel/ui
+php artisan ui vue --auth
+npm install
+npm run dev
+
+
 
 
 -----------------------------------------------------------------
@@ -84,7 +100,7 @@ If statment in Blade:
 	@endunless
 -----------------------------------------------------------------
 
-Blade Loops
+Blade Loops - https://laravel.com/docs/9.x/blade#the-loop-variable
 	@for($i = 0; $i < 5; $i++)
 		<p>The value fo i is {{ $i }} </p>
 	@endfor
@@ -103,6 +119,33 @@ Nativ php code with Blade: (similar to <?php ?>)
 	@php
 		echo($price);
 	@endphp
+
+-----------------------------------------------------------------
+Routing - in static page
+	if you need just a simple side without controller, you can used the simple
+	view in web.php file
+
+	example:
+	Route::view('/','surface.index');
+	Route::view('/index','surface.index');
+	Route::view('/about','surface.about');
+	Route::view('/teacher','surface.teacher');
+	Route::view('/vehicle','surface.vehicle');
+	Route::view('/contact','surface.contact');
+-----------------------------------------------------------------
+Special Laravel Blade function 
+
+	{{ route('index')}} //it will be work if you make it in web.php
+	//Route::view('/','surface.index')->name('index');
+	
+	{{ asset('css/style.css') }} //it is help to make good url
+	
+	{{ url('css/style.css') }}
+	
+	
+	
+
+
 
 -----------------------------------------------------------------
 Param and variable use
@@ -148,6 +191,19 @@ Version 3:
 		<p>{{ $pizza['type'] }} -- {{ $pizza['base'] }} -- {{ $pizza['price'] }} </p>
 	@endforeach
 	
+	
+//in Controller file header include same data:
+namespace App\Http\Controllers; //this is a group of class 
+
+//namespaces basically group your functions, classes and constants under a particular 'name', 
+//which we call a namespace. 
+
+use Illuminate\Support\Facades\Http; //use this methode library
+
+/* Now use keyword allows a developer to shorten the namespace. It is a way of 
+ * telling php that I don’t want to write down the complete namespace again and again, 
+ * instead I am going to use a particular string which should resolve to that particular namespace.
+*/
 	
 -----------------------------------------------------------------
 Layout
@@ -211,13 +267,24 @@ Route Parameters
 -----------------------------------------------------------------
 Controller:
 
-	Command in terminal: php artisan make:controller PizzaController
+	Command in terminal: 
+			php artisan make:controller PizzaController
+			or
+			php artisan make:controller PizzaController --resource
 	//this will make PizzaController.php in App\Http\Controllers\
+	//resource add default function with file (index, create, store, show, edit,
+	//update, destroy -- is this any pattern?
 	
 	Changes
 	(web.php)
 		Route::get('/pizza',[PizzaController::class, 'index']);
 		Route::get('/pizza/{id}',[PizzaController::class, 'show']);
+		
+		or 
+		Route::get('/pizza','PizzaController@index');
+		Route::get('/pizza','PizzaController@index')->name('index');
+		
+		
 	
 	PizzaController.php
 		class PizzaController extends Controller
@@ -228,7 +295,20 @@ Controller:
 				['type' => 'Meet lover','base' => 'Ham, Salam','price' => 6],
 				['type' => 'Hot lover','base' => 'Pepperoni, Jalapeni','price' => 5]
 			];
+			
 			return view('pizza',['pizzas' => $pizzas]);
+			
+			or
+			return view('pizza',compact('pizzas')); //it's work correct in single array, not here
+			return view('pizza')->with('pizzas' => $pizzas);
+			return view('pizza')->with($pizzas); //it's work correct in single array, not here
+			
+			//olyan, mintha értékadás után a tömb elemeire esne szét, vagyis ami itt single tömb,
+			//átadás után már csak a változóra hivatkozunk
+			//example I give this array here: $data = array('title' => 'TITLE', 'head'=>'Head is...')
+			//I use return view('index'...)->with($data) and 'index' fájlban már csak a két változóra hivatkozok
+			//a {{ $title}}} és {{$data}} not here {{$data->title}}
+			
 			}
 	
 			public function show($id){
@@ -242,6 +322,8 @@ Model:
 	CLI:
 		php artisan make:model Pizza
 		//make file app/Models/Pizza.php
+		//php artisan make:model Pizza -m 
+		//normal make command plus migration command
 		
 		
 	Code:
@@ -253,9 +335,13 @@ Model:
 		return view('pizza',['pizzas' => $pizzas]);
 		
 		
-		//Or different query:
+		//Or different query: /Eloquent Models/
 		$pizzas = Pizza::orderBy('name')->get();
 		$pizzas = Pizza::where('name','American Hot')->get(); //where('where','what')
+		$pizzas = Pizza::latest()->get();
+		$pizzas = Pizza::find($id);
+		$pizzas = DB::select('SELECT * FROM pizzas');
+		
 		
 		//https://laravel.com/docs/9.x/queries
 			
@@ -263,6 +349,21 @@ Model:
 		(View\pizza.blade.php)
 		//and the view has been change because we use object insted of array
 		{{ $pizza->name }} -- {{ $pizza->type }} -- {{ $pizza->base }}
+		
+	Seeders (database/seeders/DatabaseSeeder.php)
+		1. step:
+		\App\Models\User::factory(10)->create(); //remove comment tag
+		//you can generate 10 dummy users details in /database/factories/UserFactory.php
+		
+		2. step:
+			command in terminal:
+			php artisan db:seed
+		
+			or
+			
+			php artisan migrate:refresh --seed
+		
+		
 
 -----------------------------------------------------------------
 Migration and migrate
@@ -297,6 +398,50 @@ Migration and migrate
 		$table->timestamp('create_at')->useCurrent();
 		$table->timestamp('update_at')->useCurrent()->useCurrentOnUpdate();
 		$table->timestamps(); //creates created_at and updated_at TIMESTAMP
+		
+		//We can make here or modify the model file Pizza.php 
+	
 
 -----------------------------------------------------------------
+PHP Tinker: https://youtu.be/EcYXsp78Xy8?t=4702 - similar to console log for JS
+	php artisan tinker //	- directly work with DB and model
+	
+	example:
+	App\Posts::count()
+	$posts = new App\Posts();
+	$posts->title = 'First';
+	$posts->content = 'First Content'; //like as login the DB add Insert data
+	$posts->save(); //save and close the db connections
+	
+	$posts = new App\Posts();
+	$posts->title = 'Second';
+	$posts->content = 'Second content';
+	$posts->save();
+	
+	quit
+-----------------------------------------------------------------
+Route::rescource : https://youtu.be/EcYXsp78Xy8?list=PLCHDCd5pc6RqvWaq7Es8FtvbXkjBj9Q1h&t=5098
+	web.php
+		Route::resource('posts','PostsController');
+		//all PostsContoller function add to the route in 1 step
+		//check: php artisan route:list 
+		//!! the method is different!!!! PUT|Patch -> update; DELETE-> destroy...
+		
+	DB use: https://youtu.be/EcYXsp78Xy8?list=PLCHDCd5pc6RqvWaq7Es8FtvbXkjBj9Q1h&t=6719
+	in Controller file:
+		use DB;
+		//in method:
+		$posts = DB::select('SELECT * FROM posts');
+
+
+-----------------------------------------------------------------
+Interesting new video: 
+https://youtu.be/MYyJ4PuL4pY
+
+DB seeders tutorial (faker): https://youtu.be/MYyJ4PuL4pY?t=3248
+
+Make factory: https://youtu.be/MYyJ4PuL4pY?t=3781
+
+
+Routing, if we use class in parameter: https://youtu.be/MYyJ4PuL4pY?t=5233
 
