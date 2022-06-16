@@ -1,0 +1,153 @@
+Git
+----
+MERGE vs REBASE: https://youtu.be/CRlGDDprdOQ
+
+master: m1 - m2 - m3
+feautre      m2 - f1 - f2
+
+ver1:
+//we are in master branch - feature branch into the master branch
+git merge --squash feature //Automatic merge
+git commit -m "feaure and master merged" //short ver1
+
+result: m1 - m2 - m3 - ver 1
+if you check the log, you will see m1-m2-m3-ver1 and find the f1-f2 change in "map", and
+-> lost all 'feature' commit.
+
+ver2: - REBASE
+//we are in feature branch - you insert changes to the master branch into the feature branch
+git rebase master
+
+result: 
+feature branch: m1 - m2 - m3 - f1 - f2
+master branch: m1 - m2 - m3
+
+ver3: - REBASE 2
+//we are in master branch
+git rebase feaure
+master branch: m1 - m2 - m3 - f1 - f2
+
+-----------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------
+General prompt: 
+git init
+git status //actual state check
+git add . //add all
+git commit -m "<commit name>"
+git log
+git branch //check actual state
+git branch feature //create new branch
+git branch -D feature //delete the feature branch
+git checkout feature //switch branch to feature
+
+git remote -v //check the clone connection
+//example:
+//origin  https://github.com/DeTom83/ninja-pizza.git (fetch)
+//origin  https://github.com/DeTom83/ninja-pizza.git (push)
+
+git pull origin master //download the new version from origin space
+//erlier, I made origin "variable"
+//git remote add origin <url>
+
+git push -u origin master //upload the master branch to origin destination
+//how can you change the origin target?
+//git remote set-url origin <url2>
+
+
+git commit
+<i> - insert mode
+... - write the commit
+<ESC> - quit to insert mode
+:wq - write and quit
+
+
+git checkout <commit number> //back to the <commit number> status
+//here, you can create a new branch
+
+git reset --hard <commit number> //back to the <c.nu.> state
+//here you will lost everything after <commit number>
+
+git checkout -- .
+//back the last state before "git add ." -- delete actual unsaved status
+
+git branch new-feature //create a branch w/o switched
+git checkout -b new-feature //create a branch and switched to it 
+(normal branch and switched)
+
+git merge feature //merged with all commit information
+git merge --squash feature //Automatic merge and lost all feature commit
+
+-----------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------
+https://academind.com/tutorials/git-the-basics
+git init: Initialize a Git repository in the current folder
+git status: Show the current status of your Git repository (the "working tree" status)
+git add .: Track changes of all files in your Repository
+git commit -m "your message": Save updated code to a new Commit named "your message"
+git log: List all Commits inside your Branch
+git checkout branch-name: Jump to the last Commit of a Branch
+git checkout commitid Jump to a specific Commit of a Branch (commitid should be the ID of the Commit you want to checkout)
+git checkout -- .: Jump back to the last Commit and remove any untracked changes
+get reset --hard: Turn the selected Commit into the new HEAD
+git branch: List all Branches inside your Repository
+git checkout -b branch-name: Create a new Branch named branch-name
+git merge branch-name: Merge two Branches, branch-name is the Branch you merge with the Branch you're currently working in
+git branch -D branch-name: Delete the Branch named branch-name
+-----------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------
+Stash command: https://www.youtube.com/watch?v=DeU6opFU_zw
+Git summary: https://marklodato.github.io/visual-git-guide/index-en.html
+https://git-scm.com/book/en/v2
+
+GIT series: 
+Introduction to Git - Core Concepts - https://www.youtube.com/watch?v=uR6G2v_WsRA
+Introduction to Git - Branching and Merging - https://www.youtube.com/watch?v=FyAAIHHClqI
+Introduction to Git - Remotes - https://www.youtube.com/watch?v=Gg4bLk8cGNo
+
+
+Core Concepts
+==============
+
+ Working Tree 		    Staging Area					History
+----------------		----------------    ------------------
+git init						git add <file>			git commit -m ""
+w/o add							w/o commit
+
+
+git diff
+//what is the difference between the Working Tree and Staging Area version?
+Working Tree <---> Staging Area
+
+git diff --staged
+//what is the difference between the Staging Area and History version?
+Staging Area <---> History
+
+git rm <file>
+//remove file in Stage and WT
+//git reset HEAD <file> - undo to unstage
+
+git checkout -- <file>
+//discard changes in working directory
+//when we modified S1 but not add in stage and we want to undo the last modified
+//Stage -> WT | drop off the last modified
+
+git reset HEAD <file>
+//discard changes in Stage Area
+//History->Stage Area
+
+//Restore from an earlier commit
+git log -- <file name> || git log -- S2
+//we will see the commit and we need the commit number -> 9ddb9
+git checkout <commit number> -- <file name>
+git checkout 9ddb9 -- S2
+git status  //check the result
+git commit -m "restore S2" //we don't forget commited it
+
+Branching and Merging
+==========================
+
+git branch //show the branch list
+git branch <branch name> //create new branch w/o switch
+git checkout -b <branch name> //create new branch and switch
+git checkout <branch name> //switch branch to <branch name>
+
