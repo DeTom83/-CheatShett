@@ -57,6 +57,9 @@ DELETE FROM users WHERE age>50;
 DROP TABLE <tname>; -> DROP TABLE users;
 DROP DATABASE <dbname>; -> DROP DATABASE teszt;
 
+//------------ SELECT 0 --------------
+SELECT database(); //show where are you. PWD commadn in Linux.
+
 
 /// SIMPLE php connection and query
 	$conn = mysql_connect('127.0.0.1','root','password');
