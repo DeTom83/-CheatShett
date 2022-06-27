@@ -29,7 +29,7 @@ master branch: m1 - m2 - m3 - f1 - f2
 
 -----------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------
-General prompt: 
+General command: 
 git init
 git status //actual state check
 git add . //add all
@@ -123,7 +123,7 @@ git diff --staged
 Staging Area <---> History
 
 git rm <file>
-//remove file in Stage and WT
+//remove file in Stage and WT?
 //git reset HEAD <file> - undo to unstage
 
 git checkout -- <file>
@@ -141,13 +141,136 @@ git log -- <file name> || git log -- S2
 git checkout <commit number> -- <file name>
 git checkout 9ddb9 -- S2
 git status  //check the result
-git commit -m "restore S2" //we don't forget commited it
+git commit -m "restore S2" //we don't forget commit it
 
 Branching and Merging
 ==========================
 
 git branch //show the branch list
 git branch <branch name> //create new branch w/o switch
+git switch <branch name> //git 2.23+ create new branch w/o switch
 git checkout -b <branch name> //create new branch and switch
+git switch -c <branch name> //git 2.23+ create new branch and switch
 git checkout <branch name> //switch branch to <branch name>
 
+
+File methode
+==========================
+Check file in WD:
+	git ls-files
+	
+DELETE file:
+	normal way:
+		delete file*->add . ->commit -m
+		//*if you check files (git ls-files) you will see the deleted file in this list.
+		//*undo: git restore <file name> (before use add .)
+	use rm:
+		git rm <file name>
+		
+	Untracked file delete:
+	if we add a new file it will be in an untracked state for the first time. We want to delete it:
+		git clean -dn //d as delete all file/directory, n as list all this entry
+		git clean -df //f as force delete ->no any question
+
+
+
+Undoing:
+	1.first case: //undoing in unstage area
+	When you modified the file first time it in the unstage area //git status->modified: <file name>
+		git restore <file name>  or git checkout <file-name> //specific file case
+		
+		or 
+		
+		git restore . or git checkout . //current branch, undo all modified | back to the last checkout point
+		
+		git checkout -- //specific branch case
+		
+	2. second case undoing stage changes //after add . and before commit
+		
+		git restore --staged <file> && next: git checkout <file>
+		git reset <file> && next: git checkout <file>
+		
+		staged->unstaged->1. first case 
+		
+		
+	3. third case - undoing commit
+		
+		git reset --soft HEAD~<steps number>
+		//just removing the lastest commit and keeping the changes in the working directory and
+		//in the staging area.
+		git reset --soft HEAD~1
+		//commit undo history->staged status
+		
+		git reset HEAD~<steps number>
+		
+		git reset --hard HEAD~1 //removing the commit and the changes from the WD and staging area
+	
+DELETE branch:
+		git branch //check the branch(s)
+		git branch -d <branch name> //only allow you to delete branches if you merge these branches already
+		git branch -D <branch name> //force deletion -> no metter if you merged it or not
+		git branch -D <branch name1> <branch name2>
+		
+		
+Special cases:
+================================
+	Detached HEAD
+		if you are jump the earlier commit point that not connected the last checkpoint 
+		you will be in "deatched HEAD" status. 
+		example:
+			git log //check the erlier commit number
+			git checkout e1233e5 //jump e1233e5 point
+			git status or git branch //you will see you are in (HEAD detached from e1233e5) branch
+			//you can switch the branch but you will last all change or before switch:
+			git branch <new branch name> e1233e5 //you will create a new branch from e1233e5 point
+			
+	.gitignore
+		test.log //add file to the ignore list
+		*.log
+		!test2.log //exception - not ignored
+
+		public/* //add directory
+		
+Basic Command Summary: Deleting Data
+	WD file //already part of previous commit
+		//run command after file was deleted from working directory
+		git rm <file name> 
+		git add <file name>
+		
+	Unstaged Changes
+		//revert changes in tracked files
+		git 2.23+
+		git checkout (--) .
+		git restore <file name> or .
+			
+		git clean -df
+		//delete untracked files
+		
+	Stanged Changes
+		//remomve file(s) from staging area
+		git reset <file name> & git checkout -- <filename>
+		git 2.23+ git restore --staged <filename> or .
+		
+	Lastest Commit(s)
+		//Undo latest (~1) commit
+		git reset HEAD~<number>
+		git reset --soft HEAD~<number> //removeing just the commit command
+		git reset --hard HEAD~<number> //removing all ->restore the last checkpoint
+		
+	Branches
+		//delete branch
+		git branch -D <branch name> //fordce delete
+		git branch -d <branch name> //delete if we made merge before
+	
+Stash - feature
+===================
+The stash is kind of an internal memory you could say where
+you can save uncommitted unstaged changes.
+
+
+
+
+
+	
+	
+	
