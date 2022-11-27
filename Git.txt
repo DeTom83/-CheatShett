@@ -35,6 +35,7 @@ git status //actual state check
 git add . //add all
 git commit -m "<commit name>"
 git log
+git ls-files //list data in staging area
 git branch //check actual state
 git branch feature //create new branch
 git branch -D feature //delete the feature branch
@@ -268,9 +269,72 @@ The stash is kind of an internal memory you could say where
 you can save uncommitted unstaged changes.
 
 
+------------------------------------------------------------------------------------------
+NEW: https://youtu.be/Enzva3d3uuk?t=2781
+
+git add --patch //after many commit before real add --patch show the changes.
+
+git log //show the log q is a quit
+
+git log --oneline //one row the log
+git log --oneline --graph //more visualized
+special: git reflog //show the referencia log 
 
 
+gitk //work in just git bash - view the change
 
+suppose - I write one mistake and commited. How can restore the earlier state?
+	1. git log --oneline //need the last good state id ex: 86af770
+	2. git checkout 86af770 index.html //index.html is optional
+		or
+		 git chechout HEAD~1 //1 step back
+		or
+		 ??git reset HEAD index.html //HEAD == last commit 
 	
 	
+	
+Merge - összefésülés
+---------------------
+git merge <branch name> //<branch name> beleolvasszuk a jelenlegi águnkba a brand nem utolsó állapotát
+git rebase <branch name> //úgy olvasztunk be, hogy minden commitot is átviszünk, lépésenként
+//headet visszatesszük a közös ősre, és minden commitot egyenként fésülünk össze
+
+
+Remove file
+-------------
+A. If you dont need  file you will delete and make a new commit -am "Deleted xyz file";
+B. git rm <file-name>
+
+Master moved //change the HEAD point
+--------------------------------------------
+- don't be in the master's branch
+exp: git chechout HEAD~1 //"ctrl+z" but it is not real undo, just you can use it to "try out" the current viewpoint
+- check you status
+		 git status //you will see HEAD deatched ... HEAD is a "next commit"
+- use checkout with big B 
+		 git checkout -B master //We will lost the "next commit" and it is inreversible
+		 
+File moving
+------------
+	git mv stlye/style.css css/style.css //first dir <source> to second dir <targe>
+	You can drag the file and drop in other map and fresh the stage area.
+	If you use the git mv you won't use more. 
+	git mv <file-name> === drag and drop file and use git add .
+
+Git diff(ferencial)
+----------------------
+	git diff HEAD HEAD~1 //show me what change about it (present -> past) - what happened in the last commit 
+	git diff HEAD~9 HEAD //the direction from the past to the presents
+	
+GIT RESET
+----------
+	git reset --soft HEAD~x //ctrl+Z - Undo x step(s)
+	git reset --soft HEAD~1 //1 step back History area-->Stage area
+	//last modify doesn't lost. It is the stage. commit m -> add . state
+	//if we use commit w/o modification === ctrl + y - redo
+	
+	-- hard reset -> we lost the last state. 
+	If I understand well: --- 
+	git reset --soft HEAD~1 === git chechout HEAD~1 + git checkout -B master
+	it is a real undo === jump to the last point of view + let this be your "master" point of view
 	

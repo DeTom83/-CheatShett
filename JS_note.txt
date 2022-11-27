@@ -34,7 +34,7 @@ Data Types:
 	típus lekérése: console.log(typeof 'TimTom'); //string
 
 	const birthYear = 1983;
-	var - örökség, a let újabb és praktikusabb
+	var - örökség, a let újabb és praktikusabb //let x; default undefine;
 	
 	String
 	const jonas = "I'm " + firstName + ', a '+ yearsOld;
