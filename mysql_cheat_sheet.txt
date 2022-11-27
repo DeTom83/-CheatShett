@@ -46,6 +46,7 @@ SELECT fist_name, last_name FROM users WHERE (name='Kovacs' AND age>10) ORDER BY
 SELECT * FROM users WHERE (first_name like '%kov%' AND age>30) ORDER BY last_name;
 
 DESCRIBE <tname>; -> DESCRIBE users;
+DESC <tname>; //shorthand
 
 DELETE FROM users WHERE first_name="Kovacs";
 DELETE FROM users WHERE age>50;
@@ -144,6 +145,10 @@ SELECT database(); //show where are you. PWD commadn in Linux.
 	WHERE name = 'TOM';
 	
 	-------------------------------------------------------------
+
+STRING Functions: https://dev.mysql.com/doc/refman/8.0/en/string-functions.html
+
+
 	
 
 	mysql_close($conn);
