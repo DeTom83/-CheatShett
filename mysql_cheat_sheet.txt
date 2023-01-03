@@ -27,7 +27,11 @@ CREATE TABLE users (
 )
 
 
-show Tables;
+SHOW TABLES;
+SHOW COLUMNS FROM <tablename>;
+or
+DESC <tablename>;
+
 SELECT * FROM <tname>; ->SELECT * FROM users;
 
 INSERT INTO users(first_name, last_name, email, password, age) 
@@ -51,7 +55,7 @@ DELETE FROM users WHERE first_name="Kovacs";
 DELETE FROM users WHERE age>50;
 
 
-
+SHOW WARNINGS;
 
 //------------ DROP --------------
 DROP TABLE <tname>; -> DROP TABLE users;
@@ -116,8 +120,8 @@ SELECT database(); //show where are you. PWD commadn in Linux.
 	//We make a new table with foregin key
 	CREATE TABLE photos(
   id SERIAL PRIMARY KEY,
-  name VARCHAR(50),
-  url VARCHAR(250),
+  name VARCHAR(50) NOT NULL,
+  url VARCHAR(250) DEFAULT 'http://youtube.com',
   user_id INTEGER REFERENCES users(id)
 	);
 	//You have a few different option if the foreign key is deleted
@@ -147,3 +151,13 @@ SELECT database(); //show where are you. PWD commadn in Linux.
 	
 
 	mysql_close($conn);
+	
+	CREATE TABLE people(name VARCHAR(50) NOT NULL, age INT NOT NULL);
+	CREATE TABLE people(name VARCHAR(50) DEFAULT 'NoName', age INT NOT NULL DEFAULT 99);
+	
+	CREATE TABLE unique_cats2 (
+    cat_id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL DEFAULT 'NoName',
+    age INT NOT NULL DEFAULT 99,
+    PRIMARY KEY (cat_id)
+	);
