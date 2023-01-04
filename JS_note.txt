@@ -414,10 +414,17 @@ The for Loop
 		console.log(elem); //output: error because obj is not iterable..
 	}
 	
-	for (let elem in obj){	
-		console.log(elem); //output: x,y,z
+	for (let key in obj){	//takes out the key
+		console.log(key); //output: a,b,c ! not a,b,c
 	}
 	
+	for (let elem of obj){	
+		console.log(Object.values(elem)); //output: x,y,z //Object.values takes out the values
+	}
+	
+	for (let key of arr){
+		console.log(key); //output: 0,1,2
+	}
 	
 	
 While loop
