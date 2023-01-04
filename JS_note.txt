@@ -391,7 +391,33 @@ The for Loop
 		console.log(jonasArray[i]);
 	  }
 	}
+	
+	//for of and for in
 
+	const arr = ['a','b','c'];
+	const str = a,b,c;
+	const obj = {
+		a: 'x',
+		b: 'y',
+		c: 'z'
+	}
+	
+	for (let item of arr){
+		console.log(item); //output: a,b,c
+	}
+	
+	for (let char of str){	
+		console.log(char); //output: a,b,c
+	}
+	
+	for (let elem of obj){	
+		console.log(elem); //output: error because obj is not iterable..
+	}
+	
+	for (let elem in obj){	
+		console.log(elem); //output: x,y,z
+	}
+	
 	
 	
 While loop
