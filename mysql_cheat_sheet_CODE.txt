@@ -1,0 +1,231 @@
+MYSQL2: just code
+----------------------------------------
+https://sql-format.com/
+https://dev.mysql.com/
+https://www.udemy.com/course/the-ultimate-mysql-bootcamp-go-from-sql-beginner-to-expert
+----------------------------------------
+CRUD(I):
+=========
+	------------- CREATE --------------
+		CREATE DATABASE <dbname>;
+
+		CREATE TABLE cats 
+			( 
+				 cat_id INT NOT NULL AUTO_INCREMENT, 
+				 name   VARCHAR(100) NOT NULL DEFAULT 'Unnamed', 
+				 breed  VARCHAR(100) NOT NULL DEFAULT 'Unbreed', 
+				 age    INT NOT NULL DEFAULT 0, 
+				 PRIMARY KEY (cat_id) 
+			); 
+			
+			
+		CREATE TABLE employees (
+				id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+				first_name VARCHAR(255) NOT NULL,
+				last_name VARCHAR(255) NOT NULL,
+				middle_name VARCHAR(255),
+				age INT NOT NULL,
+				current_status VARCHAR(255) NOT NULL DEFAULT 'employed'
+		);
+
+
+	------------- INSERT --------------
+
+		INSERT INTO cats(name, breed, age) 
+		VALUES ('Ringo', 'Tabby', 4),
+					 ('Cindy', 'Maine Coon', 10),
+					 ('Dumbledore', 'Maine Coon', 11),
+					 ('Egg', 'Persian', 4),
+					 ('Misty', 'Tabby', 13),
+					 ('George Michael', 'Ragdoll', 9),
+					 ('Jackson', 'Sphynx', 7);
+
+
+	------------- READ ----------------
+		SHOW DATABASES;
+		USE <dbname>;
+
+		SELECT database(); //PWD
+		SHOW WARNINGS;
+
+		SHOW TABLES;
+		DESC cats;
+
+
+		SELECT * FROM cats; 
+		SELECT name FROM cats; 
+		SELECT age FROM cats; 
+		SELECT cat_id FROM cats; 
+		SELECT name, age FROM cats;
+
+		SELECT * FROM cats WHERE name='egG';
+		SELECT cat_id, age FROM cats WHERE cat_id=age;
+
+		SELECT name AS 'cat name', breed AS 'kitty breed' FROM cats;
+
+	------------- UPDATE --------------
+		UPDATE cats SET breed='Shorthair' WHERE breed='Tabby';
+		UPDATE cats SET age=14 WHERE name='Misty';
+		UPDATE cats SET age=12 WHERE breed='Maine Coon';
+
+		UPDATE shirts SET color='off white', shirt_size='XS' WHERE color='white';
+
+
+	------------- DELETE --------------
+		DELETE FROM cats WHERE age=4;
+		DELETE FROM cats WHERE name='Egg';
+		DELETE FROM cats;
+
+		DROP DATABASE <dbname>;
+		DROP TABLE shirts;
+
+
+
+
+USE FILE:
+==============
+	source <fname>.sql;
+	source <dir>/<fname>.sql;
+
+
+String function
+=================
+
+	REF1: https://dev.mysql.com/doc/refman/8.0/en/string-functions.html
+	REF2: https://www.mysqltutorial.org/mysql-string-functions/
+
+	-CONCAT (column1, column2,'text',' ', ' more text', column3);
+	SELECT CONCAT('Hello','...', ' World');
+	SELECT CONCAT(author_fname, ' ', author_lname) AS 'Author' FROM books;
+
+
+	-CONCAT_WS('-',title, fname,lname)//O: title - fname - lname
+	SELECT CONCAT_WS(' - ',title, fname,lname) FROM users; //Output: Miss - Poli - Moli
+
+
+	-SUBSTRING ('TEXT',1,4) == SUBSTR('TEXT',1,4);
+	SELECT SUBSTRING ('Hello World',1,4); //output: Hell
+	SELECT SUBSTRING ('Hello World',7); //output: Word
+	SELECT SUBSTRING ('Hello World',-3); //output: rld
+	SELECT SUBSTRING ("I'm IRON MAN",-3); //output: MAN
+	SELECT SUBSTRING (title, 1,10) FROM books;
+	SELECT SUBSTR (title, 1,10) FROM books;
+	SELECT CONCAT(SUBSTR (title, 1,10),'...') FROM books; //<short title>...
+
+	-REPLACE('text',before, after) //It's case sensitive
+	SELECT REPLACE('Hello World', 'Hell', '@#<>#'); //out:@#<>#o World
+	SELECT REPLACE('Hello World', 'l', '7'); //out: He77o Wor7d
+	SELECT REPLACE('HellO World', 'o', '*'); //out: HellO W*rld
+	SELECT REPLACE('cheese bread coffee milk', ' ', ' and '); //cheese and bread ...
+	SELECT REPLACE(title, 'e ', '3') FROM books;
+	SELECT SUBSTRING(REPLACE(title, 'e', '3'), 1, 10) AS 'weird string' FROM books;
+
+	-REVERSE('str')//O: rts
+	SELECT REVERSE('Hello World'); //O: dlroW olleH
+	SELECT CONCAT(author_fname, REVERSE(author_fname)) FROM books;
+
+	-CHAR_LENGTH(text)
+	SELECT CHAR_LENGTH('Hello Work'); //O:11
+	SELECT author_lname, CHAR_LENGTH(author_lname) AS length FROM books; 
+	SELECT CONCAT(author_lname,' is ',CHAR_LENGTH(author_lname),' characters long') FROM books;
+
+	-UPPER() and LOWER()
+	SELECT CONCAT_WS(' - ',UPPER('Hello World'),LOWER('Hello World')); //O: HELLO WORLD - hello world
+	SELECT CONCAT('MY FAVORITE BOOK IS ', LOWER(title)) FROM books;
+	SELECT CONCAT('MY FAVORITE BOOK IS ', UPPER(title)) FROM books;
+	*************
+			This works:
+			SELECT UPPER(CONCAT(author_fname, ' ', author_lname)) AS "full name in caps" FROM books;
+
+			While this does not:
+			SELECT CONCAT(UPPER(author_fname, ' ', author_lname)) AS "full name in caps"  FROM books;
+
+			UPPER only takes one argument and CONCAT takes two or more arguments, so they can't be switched in that way.
+	*************
+
+Refining Our Selections
+=========================
+	REF: https://dev.mysql.com/doc/refman/8.0/en/select.html
+
+	-DISTINCT //filters out duplication if any
+	SELECT DISTINCT author_lname FROM books; //->each name will appear only once
+	SELECT DISTINCT author_lname, author_fname Name FROM books;
+	SELECT DISTINCT CONCAT(author_lname,',', author_fname) AS Full Name FROM books;
+
+	-ORDER BY
+	SELECT author_lname FROM books ORDER BY author_lname;
+	SELECT * FROM books ORDER BY author_lname DESC;//Z->A,10->1
+	SELECT title, released_year, pages FROM books ORDER BY released_year ASC;//A->Z,1->10 - default
+	SELECT title, author_fname, author_lname FROM books ORDER BY 1; //order by title
+	SELECT title, author_fname, author_lname FROM books ORDER BY 1 DESC;
+	SELECT author_lname, author_fname FROM books ORDER BY author_lname, author_fname;
+	
+	-LIMIT
+	SELECT * FROM books LIMIT 10; //0 is a starting point, 10 - how many we want to go from
+	SELECT title, released_year FROM books ORDER BY released_year DESC LIMIT 14;
+	SELECT title, released_year FROM books ORDER BY released_year ASC LIMIT 10,1;
+	SELECT * FROM books LIMIT 5, 50; //5 is a starting point, 50 - how many we want to go from
+	
+	-LIKE
+	SELECT title FROM books WHERE  title LIKE 'Harry Potter'; //included in the title what is after the LIKE
+	SELECT title FROM books WHERE  title LIKE 'the'; //where the title included exactly one 'the'
+	SELECT title FROM books WHERE  title LIKE '%the%'; //aTHEn is good here - kithes
+	SELECT title FROM books WHERE  title LIKE '%the';//the word where the end of the section included 'the' :-) wiTHE
+	SELECT title, author_fname FROM books WHERE author_fname LIKE '%da%';//DAve,DelinDA,AiDA - the name included 'da'
+	SELECT title, author_fname FROM books WHERE author_fname LIKE 'da%';//DAve,DAlma,DAna - where the name start 'da'
+	SELECT title, author_fname FROM books WHERE author_fname LIKE '%da';//PanDA,MatilDA
+	
+	**********************
+	*	https://word.tips/ *
+	**********************
+	- '%' and '_' are wildcard characters + '\'
+	SELECT title, stock_quantity FROM books WHERE stock_quantity LIKE '____';//4 underscores - 4 char length - exm.: 1000
+	SELECT title, stock_quantity FROM books WHERE CHAR_LENGTH(stock_quantity)=4;
+	SELECT name, address FROM users WHERE phone_number LIKE '(235)___-____';//(235)234-0987
+	SELECT title FROM books WHERE title LIKE '%\%%'; // '\' escape char when we look for '%' sign O: '10% Happier'
+	SELECT title FROM books WHERE title LIKE '%\_%'; //O: 'fake_book'
+	
+	
+The Magic of Aggregate Functions
+=================================
+	REF: https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html
+	
+	-COUNT
+	SELECT COUNT(*) FROM books; //number of rows |How many books are in the DB?
+	SELECT COUNT(DISTINCT author_lname) FROM books; //filters out duplicate last names
+	SELECT COUNT(DISTINCT author_lname, author_fname) FROM books;
+	SELECT COUNT(*) FROM books WHERE title LIKE '%the%';
+	
+	
+	-GROUP BY - summarizes or aggregates identical data into single rows
+	SELECT author_lname, COUNT(*) FROM books GROUP BY author_lname;
+	SELECT author_fname, author_lname, COUNT(*) FROM books GROUP BY author_lname, author_fname;
+		
+	SELECT title, author FROM books;
+		Harry Potter - Philosopher's Stone  | J. K. Rowling
+		Harry Potter - Prisoner of Azkaban  | J. K. Rowling
+		Harry Potter - Order of the Phoenix | J. K. Rowling
+	
+	SELECT title, author FROM books GROUP BY author;
+		Harry Potter - Philosopher's Stone  | J. K. Rowling
+		
+	SELECT title, author, COUNT(*) FROM books GROUP BY author;
+		Harry Potter - Philosopher's Stone  | J. K. Rowling | 3
+	
+	- MIN and MAX
+	SELECT MIN(released_year) FROM books; //O: 1945
+	SELECT MAX(pages) FROM books; //O: 634
+	//What is the biggest book in books table and what is the name?
+	SELECT MAX(pages), title FROM books; //O: 634 | 'The Namesake' BUT that is not correct! 
+	//This is first title in the column.
+	SELECT title, pages FROM books WHERE pages = (SELECT Max(pages) FROM books); 
+	 or
+	SELECT title, pages FROM books ORDER BY pages DESC LIMIT 1;
+		
+	SUBQUERIES - when run one querie instead of another 
+	SELECT * FROM books WHERE pages = (SELECT Min(pages) FROM books); 
+	(SELECT * FROM books ORDER BY pages ASC LIMIT 1;)
+	
+	???Find the year each author published their first book
+	
+	

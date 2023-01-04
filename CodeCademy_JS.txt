@@ -1,0 +1,986 @@
+Codecademy - JS course
+-----------------------
+https://www.codecademy.com/learn/introduction-to-javascript/modules/learn-javascript-introduction/cheatsheet
+https://www.codecademy.com/learn/introduction-to-javascript/modules/learn-javascript-control-flow/cheatsheet
+https://www.codecademy.com/resources/docs
+https://www.codecademy.com/resources/videos
+https://www.codecademy.com/projects/language/javascript
+https://www.codecademy.com/code-challenges
+https://www.codecademy.com/resources/docs/javascript/conditionals?page_ref=catalog
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference
+
+Introduction to JavaScript
+
+Let’s take one more glance at the concepts we just learned:
+
+    Data is printed, or logged, to the console, a panel that displays messages, with console.log().
+    We can write single-line comments with // and multi-line comments between /* and */.
+    There are 7 fundamental data types in JavaScript: strings, numbers, booleans, null, undefined, symbol, and object.
+    Numbers are any number without quotes: 23.8879
+    Strings are characters wrapped in single or double quotes: 'Sample String'
+    The built-in arithmetic operators include +, -, *, /, and %.
+    Objects, including instances of data types, can have properties, stored information. 
+		The properties are denoted with a . after the name of the object, for example: 'Hello'.length.
+		
+		Properties
+		------------
+			When you introduce a new piece of data into a JavaScript program, the browser saves it as an instance 
+			of the data type. All data types have access to specific properties that are passed down to each instance. 
+			For example, every string instance has a property called length that stores the number of characters 
+			in that string. You can retrieve property information by appending the string with a period 
+			and the property name:
+
+				console.log('Hello'.length); // Prints 5
+
+			The . is another operator! We call it the dot operator.
+
+			In the example above, the value saved to the length property is retrieved from the instance of the string, 'Hello'. 
+			The program prints 5 to the console, because Hello has five characters in it.
+		--------------	
+		
+    Objects, including instances of data types, can have methods which perform actions. Methods are 
+		called by appending the object or instance with a period, the method name, and parentheses. 
+		For example: 'hello'.toUpperCase().
+		
+		Methods
+		--------
+			Remember that methods are actions we can perform. Data types have access to specific methods 
+			that allow us to handle instances of that data type. JavaScript provides a number of string methods.
+
+			We call, or use, these methods by appending an instance with:
+				a period (the dot operator)
+				the name of the method
+				opening and closing parentheses
+
+			E.g. 'example string'.methodName().
+			
+
+			Does that syntax look a little familiar? When we use console.log() we’re calling the .log() 
+			method on the console object. Let’s see console.log() and some real string methods in action!
+
+				console.log('hello'.toUpperCase()); // Prints 'HELLO'
+				console.log('Hey'.startsWith('H')); // Prints true
+
+			Let’s look at each of the lines above:
+
+					On the first line, the .toUpperCase() method is called on the string instance 'hello'. 
+					The result is logged to the console. This method returns a string in all capital letters: 'HELLO'.
+					
+					On the second line, the .startsWith() method is called on the string instance 'Hey'. 
+					This method also accepts the character 'H' as an input, or argument, between the parentheses. 
+					Since the string 'Hey' does start with the letter 'H', the method returns the boolean true.
+
+    We can access properties and methods by using the ., dot operator.
+    Built-in objects, including Math, are collections of methods and properties that JavaScript provides.
+
+Here are a few more resources to add to your toolkit:
+
+    Codecademy Docs: https://www.codecademy.com/resources/docs/javascript
+    Codecademy Workspaces: https://www.codecademy.com/workspaces/new
+
+Make sure to bookmark these links so you have them at your disposal.
+
+------------------------------------------------------------------------------------------------------------------------
+Variables
+-----------
+	cont / let - old var
+	
+	operator : 
+	
+		levelUp += 5;
+		powerLevel  -= 100;
+		multiplyMe *=11;
+		quarterMe /=4;
+		gainedDollar++;
+		lostDollar--;
+		
+		const myPet = 'armadillo';
+		console.log(`I own a pet ${myPet}.`);
+		
+		let myName = "Tom";
+		let myCity = "Reading";
+		console.log(`My name is ${myName}. My favorite city is ${myCity}`);
+		
+		typeof operator - check the type
+		let newVariable = 'Playing around with typeof.';
+		console.log(typeof newVariable);//string
+		newVariable = 1;
+		console.log(typeof newVariable);//number
+		
+		Review Variables
+
+		Nice work! This lesson introduced you to variables, a powerful concept you will use in all your future programming endeavors.
+
+		Let’s review what we learned:
+
+				Variables hold reusable data in a program and associate it with a name.
+				Variables are stored in memory.
+				The var keyword is used in pre-ES6 versions of JS.
+				let is the preferred way to declare a variable when it can be reassigned, and const is the preferred way to declare a variable with a constant value.
+				Variables that have not been initialized store the primitive data type undefined.
+				Mathematical assignment operators make it easy to calculate a new value and assign it to the same variable.
+				The + operator is used to concatenate strings including string values held in variables.
+				In ES6, template literals use backticks ` and ${} to interpolate values into a string.
+				The typeof keyword returns the data type (as a string) of a value.
+
+------------------------------------------------------------------------------------------------------------------------
+283 K converts to 10 °C which converts to 50 °F.
+273 K == 0 °C = 40°F
+------------------------------------------------------------------------------------------------------------------------
+Human Years to Dog years:
+
+const myAge = 39; //it equal to your age as a number
+let earlyYears = 2;
+earlyYears *=10.5;//The first two years of a dog’s life count as 10.5 dog years each.
+//console.log(earlyYears);
+let laterYears = (myAge-2);//first 2 years
+laterYears *=4; //Each year following equates to 4 dog years.
+let myAgeInDogYears = laterYears+earlyYears;
+console.log(`If your dog is ${myAge} years old equates to ${myAgeInDogYears} years in a dog’s life.`);
+
+const myName = 'Tom';
+
+console.log("My name is "+myName.toLowerCase()+". I am "+myAge+" years old in human years which is "+myAgeInDogYears+" years old in dog years.");
+
+------------------------------------------------------------------------------------------------------------------------
+Conditionals
+-------------
+https://www.codecademy.com/resources/docs/javascript/conditionals?page_ref=catalog
+Comparison Operators
+
+    Less than: <
+    Greater than: >
+    Less than or equal to: <=
+    Greater than or equal to: >=
+    Is equal to: ===
+    Is not equal to: !==
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Classes:
+https://www.codecademy.com/learn/learn-intermediate-javascript/modules/learn-javascript-classes/cheatsheet
+
+Practice:
+	class Dog {
+		constructor(name) {
+			this._name = name;
+			this._behavior = 0;
+		}
+
+		get name() {
+			return this._name;
+		}
+		get behavior() {
+			return this._behavior;
+		}   
+
+		incrementBehavior() {
+			this._behavior ++;
+		}
+	}
+
+	let halley = new Dog('Halley');
+	console.log(halley.name); // Print name value to console
+	console.log(halley.behavior); // Print behavior value to console
+	halley.incrementBehavior(); // Add one to behavior
+	console.log(halley.name); // Print name value to console
+	console.log(halley.behavior); // Print behavior value to console
+	------------------------------------------------------------------------------------------
+	class Surgeon {
+		constructor(name, department) {
+			this.name = name;
+			this.department = department;
+		}
+	}
+
+	let surgeonRomero = new Surgeon('Francisco Romero','Cardiovascular');
+	------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+-----------
+If statment
+-------------
+So which values are falsy— or evaluate to false when checked as a condition? The list of falsy values includes:
+
+    0
+    Empty strings like "" or ''
+    null which represent when there is no value at all
+    undefined which represent when a declared variable lacks a value
+    NaN, or Not a Number
+
+
+--------------
+	let tool = '';
+	// Use short circuit evaluation to assign  writingUtensil variable below:
+	let writingUtensil = tool || 'pen';
+	console.log(`The ${writingUtensil} is mightier than the sword.`);
+--------------
+short-hand if
+
+	let isNightTime = true;
+ 
+	if (isNightTime) {
+	  console.log('Turn on the lights!');
+	} else {
+	  console.log('Turn off the lights!');
+	}
+	
+	or
+	
+	isNightTime ? console.log('Turn on the lights!') : console.log('Turn off the lights!');
+	-------------
+	else if:
+	
+		let stopLight = 'yellow';
+		 
+		if (stopLight === 'red') {
+		  console.log('Stop!');
+		} else if (stopLight === 'yellow') {
+		  console.log('Slow down.');
+		} else if (stopLight === 'green') {
+		  console.log('Go!');
+		} else {
+		  console.log('Caution, unknown!');
+		}
+	--------------
+	
+	switch:
+	
+	let groceryItem = 'papaya';
+	 
+	switch (groceryItem) {
+	  case 'tomato':
+	    console.log('Tomatoes are $0.49');
+	    break;
+	  case 'lime':
+	    console.log('Limes are $1.49');
+	    break;
+	  case 'papaya':
+	    console.log('Papayas are $1.29');
+	    break;
+	  default:
+	    console.log('Invalid item');
+	    break;
+	}
+	 
+	// Prints 'Papayas are $1.29'
+	
+	--------------
+	Conditional Statements
+	Review
+
+	Way to go! Here are some of the major concepts for conditionals:
+
+			An if statement checks a condition and will execute a task if that condition evaluates to true.
+			if...else statements make binary decisions and execute different code blocks based on a provided condition.
+			We can add more conditions using else if statements.
+			Comparison operators, including <, >, <=, >=, ===, and !== can compare two values.
+			The logical and operator, &&, or “and”, checks if both provided expressions are truthy.
+			The logical operator ||, or “or”, checks if either provided expression is truthy.
+			The bang operator, !, switches the truthiness and falsiness of a value.
+			The ternary operator is shorthand to simplify concise if...else statements.
+			A switch statement can be used to simplify the process of writing multiple else if statements. The break keyword stops the remaining cases from being checked and executed in a switch statement.
+
+	Magic 8 Ball
+		let userName = "Jane";
+		let userQuestion = "Will it rain?"; 
+		let randomNumber = Math.floor(Math.random()*8);
+		let eightBall = "";
+
+		userName ? console.log(`Hello, ${userName}!`) : console.log('Hello');
+
+		userName ? console.log(`${userName}, ${userQuestion} `) : console.log(`${userQuestion}`);
+
+		console.log(randomNumber);
+
+		switch (randomNumber){
+			case 1: 
+				eightBall = "It is certain";
+				break;
+			case 2: 
+				eightBall = "It is decidedly so";
+				break;  
+			case 3: 
+				eightBall = "Reply hazy try again";
+				break;  
+			case 4: 
+				eightBall = "Cannot predict now";
+				break;  
+			case 5: 
+				eightBall = "Do not count on it";
+				break;  
+			case 6: 
+				eightBall = "My sources say no";
+				break;  
+			case 7: 
+				eightBall = "Outlook not so good";
+				break;  
+			case 8: 
+				eightBall = "Signs point to yes";
+				break;  
+		}
+		console.log("Ball's answer: "+eightBall);
+		
+		-----------------------
+		if (coin ___ "heads") {
+		  console.log('coin is heads!');
+		} else {
+		  console.log('coin is tails...');
+		}
+		
+		___ egyenlő ===
+		
+		------------------------------
+		Function:
+		
+		function greeting (name = 'stranger') {
+		  console.log(`Hello, ${name}!`)
+		}
+		 
+		greeting('Nick') // Output: Hello, Nick!
+		greeting() // Output: Hello, stranger!
+		
+		--------------------------------
+		
+		function multiplyByNineFifths(number) {
+		  return number * (9/5);
+		};
+		 
+		function getFahrenheit(celsius) {
+		  return multiplyByNineFifths(celsius) + 32;
+		};
+		 
+		getFahrenheit(15); // Returns 59
+		
+		---------------------------------
+		
+		const plantNeedsWater = function(day){
+			if (day === 'Wednesday'){
+				return true;
+			}else{
+				return false;
+			}
+		};
+
+		console.log(plantNeedsWater('Tuesday'));
+		plantNeedsWater('Tuesday') ? console.log("Let's water the plan") : console.log("False");
+		
+		Arrow function:
+		----------------
+		example1:
+		const rectangleArea = (width, height) => {
+		  let area = width * height;
+		  return area;
+		};
+		
+		example2:
+		const plantNeedsWater = (day) => {
+			if (day === 'Wednesday') {
+				return true;
+			} else {
+				return false;
+			}
+		};
+		
+		example3:
+		
+		const plantNeedsWater = (day) => {
+			return day === 'Wednesday' ? true : false;
+		};
+		
+		const plantNeedsWater = day => day === 'Wednesday' ? true : false;
+		
+		-------------------------------------------------------------------------
+		Scope
+
+		An important idea in programming is scope. Scope defines where variables can be accessed or referenced. 
+		While some variables can be accessed from anywhere within a program, other variables may only be available in a specific context.
+		
+		You can think of scope like the view of the night sky from your window. Everyone who lives on the planet 
+		Earth is in the global scope of the stars. The stars are accessible globally. Meanwhile, if you live in a city, 
+		you may see the city skyline or the river. The skyline and river are only accessible locally in your city, 
+		but you can still see the stars that are available globally.
+
+		Over the next few exercises, we’ll explore how scope relates to variables and learn best practices for variable declaration.
+		
+		example1:
+		const city = 'New York City';
+		const logCitySkyline = ()=>{
+			let skyscraper = 'Empire State Building';
+			return 'The stars over the ' + skyscraper + ' in ' + city;
+		};
+		console.log(logCitySkyline());
+
+			Block Scope:
+			const logSkyColor = () => {
+			  let color = 'blue'; 
+			  console.log(color); // blue 
+			};
+			 
+			logSkyColor(); // blue 
+			console.log(color); // ReferenceError
+		
+		Scope Pollution
+		----------------
+
+		It may seem like a great idea to always make your variables accessible, but having too many global variables 
+		can cause problems in a program.
+
+		When you declare global variables, they go to the global namespace. The global namespace allows the variables 
+		to be accessible from anywhere in the program. These variables remain there until the program finishes which 
+		means our global namespace can fill up really quickly.
+
+		Scope pollution is when we have too many global variables that exist in the global namespace, or when we 
+		reuse variables across different scopes. Scope pollution makes it difficult to keep track of our different 
+		variables and sets us up for potential accidents. For example, globally scoped variables can collide with 
+		other variables that are more locally scoped, causing unexpected behavior in our code.
+
+		Let’s look at an example of scope pollution in practice so we know how to avoid it:
+
+			let num = 50;
+			 
+			const logNum = () => {
+			  num = 100; // Take note of this line of code
+			  console.log(num);
+			};
+			 
+			logNum(); // Prints 100
+			console.log(num); // Prints 100
+
+		You’ll notice:
+
+				We have a variable num.
+				Inside the function body of logNum(), we want to declare a new variable but forgot to use the let keyword.
+				When we call logNum(), num gets reassigned to 100.
+				The reassignment inside logNum() affects the global variable num.
+				Even though the reassignment is allowed and we won’t get an error, if we decided to use num later, 
+				we’ll unknowingly use the new value of num.
+
+		While it’s important to know what global scope is, it’s best practice to not define variables in the global scope.
+		
+		Practice Good Scoping
+
+			Given the challenges with global variables and scope pollution, we should follow best practices for 
+			scoping our variables as tightly as possible using block scope.
+
+			Tightly scoping your variables will greatly improve your code in several ways:
+
+					It will make your code more legible since the blocks will organize your code into discrete sections.
+					It makes your code more understandable since it clarifies which variables are associated with different 
+					parts of the program rather than having to keep track of them line after line!
+					It’s easier to maintain your code, since your code will be modular.
+					It will save memory in your code because it will cease to exist after the block finishes running.
+
+			Here’s another example of how to use block scope, as defined within an if block:
+
+			const logSkyColor = () => {
+			  const dusk = true;
+			  let color = 'blue'; 
+			  if (dusk) {
+			    let color = 'pink';
+			    console.log(color); // pink
+			  }
+			  console.log(color); // blue 
+			};
+			 
+			console.log(color); // ReferenceError
+
+			Here, you’ll notice:
+
+					We create a variable dusk inside the logSkyColor() function.
+					After the if statement, we define a new code block with the {} braces. Here we assign a new value to the variable 
+					color if the if statement is truthy.
+					Within the if block, the color variable holds the value 'pink', though outside the if block, in the function body, 
+					the color variable holds the value 'blue'.
+					While we use block scope, we still pollute our namespace by reusing the same variable name twice. A better practice 
+					would be to rename the variable inside the block.
+
+			Block scope is a powerful tool in JavaScript, since it allows us to define variables with precision, and not pollute the global namespace. If a variable does not need to exist outside a block— it shouldn’t!
+
+			example:
+			const logVisibleLightWaves = () => {
+				let lightWaves = 'Moonlight';
+				let region = 'The Arctic';
+				// Add if statement here:
+				if(region === 'The Arctic'){
+					let lightWaves =  'Northern Lights';
+					console.log(lightWaves)
+				}
+			};
+			logVisibleLightWaves();
+			
+
+			Review: Scope
+
+			In this lesson, you learned about scope and how it impacts the accessibility of different variables.
+
+			Let’s review the following terms:
+
+					Scope refers to where variables can be accessed throughout the program, and is determined by where and how they are declared.
+					Blocks are statements that exist within curly braces {}.
+					Global scope refers to the context within which variables are accessible to every part of the program.
+					Global variables are variables that exist within global scope.
+					Block scope refers to the context within which variables are accessible only within the block they are defined.
+					Local variables are variables that exist within block scope.
+					Global namespace is the space in our code that contains globally scoped information.
+					Scope pollution is when too many variables exist in a namespace or variable names are reused.
+
+			As you continue your coding journey, remember to use best practices when declaring your variables! 
+			Scoping your variables tightly will ensure that your code has clean, organized, and modular logic.
+
+------------------------------------------------------------------------------------------------------------------------
+	Create an Array
+		One way we can create an array is to use an array literal. An array literal creates an array by wrapping items in square brackets []. 
+		Remember from the previous exercise, arrays can store any data type — we can have an array that holds all the same data 
+		types or an array that holds different data types.
+		Diagram outlining an array literal that has 3 separate elements, a comma separates each element (a string, a number, and a boolean) 
+		and the elements are wrapped with square brackets
+
+		Let’s take a closer look at the syntax in the array example:
+
+				The array is represented by the square brackets [] and the content inside.
+				Each content item inside an array is called an element.
+				There are three different elements inside the array.
+				Each element inside the array is a different data type.
+
+		We can also save an array to a variable. You may have noticed we did this in the previous exercise:
+
+				let newYearsResolutions = ['Keep a journal', 'Take a falconry class', 'Learn to juggle'];
+			
+			Accessing Elements
+
+		Each element in an array has a numbered position known as its index. We can access individual items using their index, 
+		which is similar to referencing an item in a list based on the item’s position.
+
+		Arrays in JavaScript are zero-indexed, meaning the positions start counting from 0 rather than 1. Therefore, 
+		the first item in an array will be at position 0. Let’s see how we could access an element in an array:
+		Diagram outlining how to access the property of an array using the index of the element
+
+		In the code snippet above:
+
+				cities is an array that has three elements.
+				We’re using bracket notation, [] with the index after the name of the array to access the element.
+				cities[0] will access the element at index 0 in the array cities. You can think of cities[0] as accessing the 
+				space in memory that holds the string 'New York'.
+
+		You can also access individual characters in a string using bracket notation and the index. For instance, you can write:
+
+		const hello = 'Hello World';
+		console.log(hello[6]);
+		// Output: W
+		example: 
+		
+		let seasons = ['Winter', 'Spring', 'Summer', 'Fall'];		
+		seasons[3] = 'Autumn';
+		console.log(seasons); 
+		//Output: ['Winter', 'Spring', 'Summer', 'Autumn']
+			
+		
+		Arrays with let and const
+
+			You may recall that you can declare variables with both the let and const keywords. 
+			Variables declared with let can be reassigned.
+	
+			Variables declared with the const keyword cannot be reassigned. However, elements in an array declared with const remain mutable. 
+			Meaning that we can change the contents of a const array, but cannot reassign a new array or a different value.
+	
+			The instructions below will illustrate this concept more clearly. Pay close attention to the similarities and differences 
+			between the condiments array and the utensils array as you complete the steps.
+
+		More Array Methods
+		
+		const groceryList = ['orange juice', 'bananas', 'coffee beans'];
+		groceryList.push('apple','peach');//+apple,peach
+		groceryList.pop();//-last element
+		
+		More Array Methods
+
+			There are many more array methods than just .push() and .pop(). You can read about these array methods on the Docs 
+			entry for JavaScript Arrays. https://www.codecademy.com/resources/docs/javascript/arrays
+
+			.pop() and .push() mutate the array on which they’re called. However, there are times that we don’t want to mutate 
+			the original array and we can use non-mutating array methods. Be sure to check MDN to understand the behavior of the 
+			method you are using.
+
+			Some arrays methods that are available to JavaScript developers include: 
+			
+			.join(), .slice(), .splice(), .shift(), .unshift(), and .concat() amongst many others. 
+			
+			Using these built-in methods make it easier to do some common tasks when working with arrays.
+
+			Below, we will explore some methods that we have not learned yet. We will use these methods to edit a grocery list. 
+			As you complete the steps, you can consult the Codecademy Docs to learn what each method does!
+			https://www.codecademy.com/resources/docs/javascript
+
+		Nested Arrays
+
+			Earlier we mentioned that arrays can store other arrays. When an array contains another array it is known as a nested array. 
+			Examine the example below:
+
+				const nestedArr = [[1], [2, 3]];
+
+			To access the nested arrays we can use bracket notation with the index value, just like we did to access any other element:
+
+				const nestedArr = [[1], [2, 3]];
+				 
+				console.log(nestedArr[1]); // Output: [2, 3]
+
+			Notice that nestedArr[1] will grab the element in index 1 which is the array [2, 3]. 
+			Then, if we wanted to access the elements within the nested array we can chain, or add on, more bracket notation with index values.
+
+				const nestedArr = [[1], [2, 3]];
+				 
+				console.log(nestedArr[1]); // Output: [2, 3]
+				console.log(nestedArr[1][0]); // Output: 2
+
+			In the second console.log() statement, we have two bracket notations chained to nestedArr. 
+			We know that nestedArr[1] is the array [2, 3]. Then to grab the first element from that array, we use nestedArr[1][0] and we get the value of 2.
+
+			example:
+				const numberClusters = [[1,2],[3,4],[5,6]];
+				console.log(numberClusters); //[ [ 1, 2 ], [ 3, 4 ], [ 5, 6 ] ]
+				const target = numberClusters[2][1];
+				console.log(target);//6
+
+
+			!!!!!!Why const not let????? !!!!!!!!!!!
+			Variables that contain arrays can be declared with let or const. Even when declared with const, arrays are still mutable. 
+			However, a variable declared with const cannot be reassigned. 
+																				***************************
+		
+		
+------------------------------------------------------------------------------------------------------------------------
+		Loops - https://www.codecademy.com/resources/docs/javascript/loops?page_ref=catalog
+
+		A loop is a programming tool that repeats a set of instructions until a specified condition, called a stopping 
+		condition is reached. As a programmer, you’ll find that you rely on loops all the time! You’ll hear the generic term 
+		iterate when referring to loops; iterate simply means “to repeat”.
+
+		When we need to reuse a task in our code, we often bundle that action in a function. Similarly, when we see that a 
+		process has to repeat multiple times in a row, we write a loop. Loops allow us to create efficient code that automates 
+		processes to make scalable, manageable programs.
+
+		As illustrated in the diagram, loops iterate or repeat an action until a specific condition is met. When the condition is met, 
+		the loop stops and the computer moves on to the next part of the program.
+
+		example
+		for (let counter = 0; counter < 4; counter++) {
+ 			 console.log(counter);
+		}
+
+		Nested Loops
+
+			When we have a loop running inside another loop, we call that a nested loop. 
+			One use for a nested for loop is to compare the elements in two arrays. For each round of the outer for loop, 
+			the inner for loop will run completely.
+
+			Let’s look at an example of a nested for loop:
+
+				const myArray = [6, 19, 20];
+				const yourArray = [19, 81, 2];
+				for (let i = 0; i < myArray.length; i++) {
+				  for (let j = 0; j < yourArray.length; j++) {
+				    if (myArray[i] === yourArray[j]) {
+				      console.log('Both arrays have the number: ' + yourArray[j]);
+				    }
+				  }
+				}
+
+			Let’s think about what’s happening in the nested loop in our example. For each element in the outer loop array, myArray, 
+			the inner loop will run in its entirety comparing the current element from the outer array, myArray[i], to each element 
+			in the inner array, yourArray[j]. When it finds a match, it prints a string to the console.
+
+			Now it’s your turn to write a nested loop!
+
+			Note: To exit out of an infinite loop in an exercise, refresh the page - then fix the code for your loop(s).
+			
+			example:
+			
+				const bobsFollowers  = ['Dave','Eddie','Tom','Chris'];
+				const tinasFollowers = ['Dave','Eddie','Diana'];
+
+				let mutualFollowers  = new Array();
+
+				for(let i=0; i<bobsFollowers.length; i++){
+					for(let j=0; j<tinasFollowers.length; j++){
+					 (bobsFollowers[i]===tinasFollowers[j]) ? mutualFollowers.push(bobsFollowers[i]):"";
+					}
+				}
+
+				console.log(mutualFollowers);
+
+------------------------------------------------------------------------------------------------------------------------
+??????
+			Ternary Operator - https://www.codecademy.com/courses/introduction-to-javascript/lessons/control-flow/exercises/ternary-operator
+
+			In the spirit of using short-hand syntax, we can use a ternary operator to simplify an if...else statement.
+
+			Take a look at the if...else statement example:
+
+			let isNightTime = true;
+			 
+			if (isNightTime) {
+			  console.log('Turn on the lights!');
+			} else {
+			  console.log('Turn off the lights!');
+			}
+
+			We can use a ternary operator to perform the same functionality:
+
+			isNightTime ? console.log('Turn on the lights!') : console.log('Turn off the lights!');
+
+			In the example above:
+
+					The condition, isNightTime, is provided before the ?.
+					Two expressions follow the ? and are separated by a colon :.
+					If the condition evaluates to true, the first expression executes.
+					If the condition evaluates to false, the second expression executes.
+
+			Like if...else statements, ternary operators can be used for conditions which evaluate to true or false.
+
+	
+------------------------------------------------------------------------------------------------------------------------
+		Functions as Parameters - függvényegymásba ágyazás - kicsit máskép - functions as data!!!!!!
+			Ha jól értem, itt paraméterben a függvény címe megy át, amit aztán meghívunk. Csak, a fv itt egy objectum.
+		https://www.codecademy.com/courses/introduction-to-javascript/lessons/higher-order-functions/exercises/functions-as-parameters
+		Review
+
+		Great job! By thinking about functions as data, and learning about higher-order functions, you’ve taken important steps in 
+		learning to write clean, modular code that takes advantage of JavaScript’s flexibility.
+
+		Let’s review what we learned in this lesson:
+
+				Abstraction allows us to write complicated code in a way that’s easy to reuse, debug, and understand for human readers.
+
+				We can work with functions the same way we work with any other type of data, including reassigning them to new variables.
+
+				JavaScript functions are first-class objects, so they have properties and methods like any other object.
+
+				Functions can be passed into other functions as parameters.
+
+				A higher-order function is a function that either accepts functions as parameters, returns a function, or both.
+
+
+------------------------------------------------------------------------------------------------------------------------
+	Introduction to Iterators - 
+	https://www.codecademy.com/learn/introduction-to-javascript/modules/learn-javascript-iterators/cheatsheet
+	const artists = ['Picasso', 'Kahlo', 'Matisse', 'Utamaro'];
+
+	artists.forEach(artist => {
+		console.log(artist + ' is one of my favorite artists.'); //
+	});
+
+	const numbers = [1, 2, 3, 4, 5];
+
+	const squareNumbers = numbers.map(number => {
+		return number * number;
+	});
+
+	console.log(squareNumbers); //[ 1, 4, 9, 16, 25 ]
+
+	const things = ['desk', 'chair', 5, 'backpack', 3.14, 100];
+
+	const onlyNumbers = things.filter(thing => {
+		return typeof thing === 'number';
+	});
+
+	console.log(onlyNumbers);//[ 5, 3.14, 100 ]
+------------------------------------------------------------------------------------------------------------------------
+	.forEach() Method:
+		The first iteration method that we’re going to learn is .forEach(). Aptly named, .forEach() will execute the same code for each element of an array.
+			Diagram outlining the parts of an array iterator including the array identifier, the section that is the iterator, and the callback function
+
+			The code above will log a nicely formatted list of the groceries to the console. Let’s explore the syntax of invoking .forEach().
+
+					groceries.forEach() calls the forEach method on the groceries array.
+					.forEach() takes an argument of callback function. Remember, a callback function is a function passed 
+						as an argument into another function.
+					.forEach() loops through the array and executes the callback function for each element. During each execution, 
+						the current element is passed as an argument to the callback function.
+					The return value for .forEach() will always be undefined.
+
+			Another way to pass a callback for .forEach() is to use arrow function syntax.
+
+					groceries.forEach(groceryItem => console.log(groceryItem));
+
+			We can also define a function beforehand to be used as the callback function.
+
+					function printGrocery(element){
+					  console.log(element);
+					}
+					 
+					groceries.forEach(printGrocery);
+
+			The above example uses a function declaration but you can also use a function expression or arrow function as well.
+
+			All three code snippets do the same thing. In each array iteration method, we can use any of the three examples to 
+			supply a callback function as an argument to the iterator. It’s good to be aware of the different ways to pass in 
+			callback functions as arguments in iterators because developers have different stylistic preferences. Nonetheless, 
+			due to the strong adoption of ES6, we will be using arrow function syntax in the later exercises.
+				example:
+				
+					const fruits = ['mango', 'papaya', 'pineapple', 'apple'];
+					// Iterate over fruits below
+					fruits.forEach(fruit => console.log(`I want to eat a ${fruit}.`));
+
+					function printFruit(element){
+						console.log(`I want to eat a ${element}.`);
+					}
+					fruits.forEach(printFruit);
+
+
+------------------------------------------------------------------------------------------------------------------------
+		The .map() Method
+
+
+			The second iterator we’re going to cover is .map(). When .map() is called on an array, it takes an argument of 
+			a callback function and returns a new array! Take a look at an example of calling .map():
+			
+				const numbers = [1, 2, 3, 4, 5]; 
+			 
+					const bigNumbers = numbers.map(number => {
+					  return number * 10;
+					});
+
+			.map() works in a similar manner to .forEach()— the major difference is that .map() returns a new array.
+
+			In the example above:
+
+					numbers is an array of numbers.
+					bigNumbers will store the return value of calling .map() on numbers.
+					numbers.map will iterate through each element in the numbers array and pass the element into the callback function.
+					return number * 10 is the code we wish to execute upon each element in the array. 
+					This will save each value from the numbers array, multiplied by 10, to a new array.
+
+			If we take a look at numbers and bigNumbers:
+
+			console.log(numbers); // Output: [1, 2, 3, 4, 5]
+			console.log(bigNumbers); // Output: [10, 20, 30, 40, 50]
+
+			Notice that the elements in numbers were not altered and bigNumbers is a new array.
+
+------------------------------------------------------------------------------------------------------------------------
+	Creating Object Literals
+
+		Objects can be assigned to variables just like any JavaScript type. We use curly braces, {}, to designate an object literal:
+
+			let spaceship = {}; // spaceship is an empty object
+
+		We fill an object with unordered data. This data is organized into key-value pairs. A key is like a variable name that points to a location in memory that holds a value.
+
+		A key’s value can be of any data type in the language including functions or other objects.
+
+		We make a key-value pair by writing the key’s name, or identifier, followed by a colon and then the value. We separate each key-value pair in an object literal with a comma (,). Keys are strings, but when we have a key that does not have any special characters in it, JavaScript allows us to omit the quotation marks:
+
+				// An object literal with two key-value pairs
+				let spaceship = {
+				  'Fuel Type': 'diesel',
+				  color: 'silver'
+				};
+
+		The spaceship object has two properties Fuel Type and color. 'Fuel Type' has quotation marks because it contains a space character.
+
+		Let’s make some objects!
+
+		Accessing Properties
+		----------------------
+
+			There are two ways we can access an object’s property. Let’s explore the first way— dot notation, ..
+
+			You’ve used dot notation to access the properties and methods of built-in objects and data instances:
+
+					'hello'.length; // Returns 5
+
+			With property dot notation, we write the object’s name, followed by the dot operator and then the property name (key):
+
+				let spaceship = {
+				  homePlanet: 'Earth',
+				  color: 'silver'
+				};
+				spaceship.homePlanet; // Returns 'Earth',
+				spaceship.color; // Returns 'silver',
+
+			If we try to access a property that does not exist on that object, undefined will be returned.
+
+					spaceship.favoriteIcecream; // Returns undefined
+
+			Let’s get some more practice using dot notation on an object!
+
+		Bracket Notation
+		------------------
+
+			The second way to access a key’s value is by using bracket notation, [ ].
+
+			You’ve used bracket notation when indexing an array:
+
+					['A', 'B', 'C'][0]; // Returns 'A'
+
+			To use bracket notation to access an object’s property, we pass in the property name (key) as a string.
+
+			We must use bracket notation when accessing keys that have numbers, spaces, or special characters in them. 
+			Without bracket notation in these situations, our code would throw an error.
+
+					let spaceship = {
+					  'Fuel Type': 'Turbo Fuel',
+					  'Active Duty': true,
+					  homePlanet: 'Earth',
+					  numCrew: 5
+					};
+					spaceship['Active Duty'];   // Returns true
+					spaceship['Fuel Type'];   // Returns  'Turbo Fuel'
+					spaceship['numCrew'];   // Returns 5
+					spaceship['!!!!!!!!!!!!!!!'];   // Returns undefined
+
+			With bracket notation you can also use a variable inside the brackets to select the keys of an object. 
+			This can be especially helpful when working with functions:
+
+					let returnAnyProp = (objectName, propName) => objectName[propName];
+			 
+					returnAnyProp(spaceship, 'homePlanet'); // Returns 'Earth'
+
+			If we tried to write our returnAnyProp() function with dot notation (objectName.propName) the computer 
+			would look for a key of 'propName' on our object and not the value of the propName parameter.
+
+			Let’s get some practice using bracket notation to access properties!
+
+			
+			Property Assignment
+
+				Once we’ve defined an object, we’re not stuck with all the properties we wrote. Objects are mutable meaning we can update them after we create them!
+
+				We can use either dot notation, ., or bracket notation, [], and the assignment operator, = to add new key-value pairs to an object or change an existing property.
+
+				diagram showing how an object followed by brackets ([]) with the property name as a string can be reassigned to a new value. This same idea applies for accessing a property using dot notation which has the object name, followed by a dot and the name of the property
+
+				One of two things can happen with property assignment:
+
+						If the property already exists on the object, whatever value it held before will be replaced with the newly assigned value.
+						If there was no property with that name, a new property will be added to the object.
+
+				It’s important to know that although we can’t reassign an object declared with const, we can still mutate it, meaning we can add new properties and change the properties that are there.
+
+					const spaceship = {type: 'shuttle'};
+					spaceship = {type: 'alien'}; // TypeError: Assignment to constant variable.
+					spaceship.type = 'alien'; // Changes the value of the type property
+					spaceship.speed = 'Mach 5'; // Creates a new key of 'speed' with a value of 'Mach 5'
+
+				You can delete a property from an object with the delete operator.
+
+					const spaceship = {
+					  'Fuel Type': 'Turbo Fuel',
+					  homePlanet: 'Earth',
+					  mission: 'Explore the universe' 
+					};
+				 
+					delete spaceship.mission;  // Removes the mission property
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+
+
