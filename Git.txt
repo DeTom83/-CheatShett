@@ -340,3 +340,30 @@ GIT RESET
 	git reset --soft HEAD~1 === git chechout HEAD~1 + git checkout -B master
 	it is a real undo === jump to the last point of view + let this be your "master" point of view
 	
+	-- Suppose -- 
+		add to read.me -> "this is an unnecessary line." 
+		git add read.me //send it stage
+		//you realized you want to change it
+		1. git reset read.me //stage->unstage and you can modify this file | modify is still alive
+			or 
+		2. git checkout -- read.me //cancel this modify | drop all | restore to the previous state
+		
+		
+	
+
+Git Remote settings:
+https://youtu.be/Enzva3d3uuk?t=7693
+if you have a problem with SSH key:
+
+	> ss-keygen -t rsa -C "your@email.com"
+	//Generating public/private rsa key pair.
+	Enter file....(/c/.../id_rsa): 
+	Enter passphrase: //password
+	Enter ... again: //password
+	
+	> cat //c/.../id_rsa.pub //ctrl+c key
+	
+	Github/profile/edit profile/SSH & GPG keys/New SSH key/ctr+v/Add SSH key
+	
+	
+	
