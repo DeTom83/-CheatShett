@@ -1,0 +1,78 @@
+sudo apt-get update && sudo apt-get upgrade
+sudo apt-get install nano
+sudo su //sysadmin good mode ON DNKROZ
+exit
+ls -al
+ls -l
+cd ..
+. //actual dir
+.. //parent dir 
+pwd
+mkdir proba
+rmdir proba //delete dir it map is empty
+cd proba 
+
+gedit hello.php & //& lunch in background
+sudo chmod 777 laravel
+
+cp - copy
+cp -R <mappa> <újnév>
+[-R rekurzív, teljes mappa tartalmának másolása, almappákkal együtt]
+
+
+
+mv good_shape.sh bin/   - move good_shape.sh file actual dir->bin dir. 
+[-f force, all overwrite | -u update nem írja felül ha azok újabbak]
+
+rm good_shape.sh
+rm -rf Mappa //rekurzív mappa törlés, minden benne lévő töröljön -rf kapcsoló nélkül hiba üzi jön és nem töröl
+[-f force, minden törlés kérdés nélkül | -R rekurzív, törli a nem üres mappákat tartalmastul]
+
+touch test.txt //create empty file
+cat test.txt //print test.txt
+
+
+
+man [command] //help kérés
+whoami //actual user query
+CTRL+R - search kb mint a CTRL+F
+history
+grep "Hello" info.txt ???
+
+cat -n info.txt //cat + show line numbers
+touch file-{001..100}.txt //creata 100 file start file-001.txt end file-100.txt
+
+find <dir> -name <file name>
+find . -name file-001.txt
+find . -empty //üres tartalmú fájlok keresése
+find . -name "file-*" -delete
+ln -s ~/Downloads
+mlink dlds ~/Downloads
+
+tar -c -czvf source.tar.gz src   //compress
+tar -tzvf source.tar.gz //read gz content
+tar -xzvf ../source.tar.gz //extract
+
+
+
+
+Kimenetek fileba mentése
+ parancs > file
+ 	ls -la > content.txt //létrehozza, újra írja a filet
+ 	ls -la >> content.txt //hozzáfűzi az új tartalmat
+
+Jogosultságok dir/file szinten
+
+ls -al
+	--------
+	first - d or - d stand for DIR, - stand for file
+ 	2->4 elso hármas group, aki tulajdonolja a filet, annak a jogosultságai
+	5->7 csoportnak a jogai
+	8->10 - mindenki más jogai
+	last x or -, x stand for executable, - stand for Permission denied non executable 	
+ 	
+ 	chmod +x good_shape.sh //mindenkinek megadja a futtatás jogát ->rossz kutya!
+ 	chmod -x good_shape.sh //levesszük a futtathatási jogott all
+ 	chmod u+x good_shape.sh //csak magamnak adok jogosultságot
+ 	
+ 	chmode [ugoa]*([-+=]([rwxXst]*|[ugo]))+|[-+=][0-7]+'.
